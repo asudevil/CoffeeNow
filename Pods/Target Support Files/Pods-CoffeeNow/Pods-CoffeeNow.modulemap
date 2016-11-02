@@ -1,0 +1,6 @@
+framework module Pods_CoffeeNow {
+  umbrella header "Pods-CoffeeNow-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
+		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
+		844C34D01DC189360068735D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C34CF1DC189360068735D /* LoginController.swift */; };
+		844C34D21DC1B9500068735D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844C34D11DC1B9500068735D /* GoogleService-Info.plist */; };
+		84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FC81DBF407B00438B4C /* AppDelegate.swift */; };
+		84639FCB1DBF407B00438B4C /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FCA1DBF407B00438B4C /* MessagesController.swift */; };
+		84639FCE1DBF407B00438B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84639FCC1DBF407B00438B4C /* Main.storyboard */; };
+		84639FD01DBF407B00438B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84639FCF1DBF407B00438B4C /* Assets.xcassets */; };
+		84639FD31DBF407B00438B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84639FD11DBF407B00438B4C /* LaunchScreen.storyboard */; };
+		84F929901DC56DB0000E8914 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9298F1DC56DB0000E8914 /* NewMessageController.swift */; };
+		84F929931DC58667000E8914 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929921DC58667000E8914 /* User.swift */; };
+		84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929941DC5AD74000E8914 /* LoginController+handlers.swift */; };
+		84F929981DC5D538000E8914 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929971DC5D538000E8914 /* Extensions.swift */; };
+		84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929991DC6B944000E8914 /* ChatLogController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
+		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		844C34CF1DC189360068735D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		844C34D11DC1B9500068735D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84639FC51DBF407B00438B4C /* CoffeeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84639FC81DBF407B00438B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		84639FCA1DBF407B00438B4C /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		84639FCD1DBF407B00438B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84639FCF1DBF407B00438B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84639FD21DBF407B00438B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84639FD41DBF407B00438B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F9298F1DC56DB0000E8914 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		84F929921DC58667000E8914 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		84F929941DC5AD74000E8914 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
+		84F929971DC5D538000E8914 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		84F929991DC6B944000E8914 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		9F02700E7DD637B0D8ABA2C8 /* Pods-CoffeeNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow.debug.xcconfig"; sourceTree = "<group>"; };
+		F8538EBEF0698CD414004D01 /* Pods-CoffeeNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84639FC21DBF407B00438B4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4DC46FEE146E1611FF7A665B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F02700E7DD637B0D8ABA2C8 /* Pods-CoffeeNow.debug.xcconfig */,
+				F8538EBEF0698CD414004D01 /* Pods-CoffeeNow.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		840F5D201DC940610028AAA1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				840F5D211DC9409E0028AAA1 /* UserCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		844C34CE1DC189020068735D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				844C34CF1DC189360068735D /* LoginController.swift */,
+				84639FCA1DBF407B00438B4C /* MessagesController.swift */,
+				84F9298F1DC56DB0000E8914 /* NewMessageController.swift */,
+				84F929941DC5AD74000E8914 /* LoginController+handlers.swift */,
+				84F929991DC6B944000E8914 /* ChatLogController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		84639FBC1DBF407B00438B4C = {
+			isa = PBXGroup;
+			children = (
+				84639FC71DBF407B00438B4C /* CoffeeNow */,
+				84639FC61DBF407B00438B4C /* Products */,
+				4DC46FEE146E1611FF7A665B /* Pods */,
+				CCB87683DCC99022B91C2D4E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		84639FC61DBF407B00438B4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84639FC51DBF407B00438B4C /* CoffeeNow.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84639FC71DBF407B00438B4C /* CoffeeNow */ = {
+			isa = PBXGroup;
+			children = (
+				840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */,
+				84F929961DC5D523000E8914 /* Helpers */,
+				84F929911DC58656000E8914 /* Model */,
+				84639FC81DBF407B00438B4C /* AppDelegate.swift */,
+				844C34CE1DC189020068735D /* Controller */,
+				840F5D201DC940610028AAA1 /* Cell */,
+				84639FCC1DBF407B00438B4C /* Main.storyboard */,
+				84639FCF1DBF407B00438B4C /* Assets.xcassets */,
+				84639FD11DBF407B00438B4C /* LaunchScreen.storyboard */,
+				844C34D11DC1B9500068735D /* GoogleService-Info.plist */,
+				84639FD41DBF407B00438B4C /* Info.plist */,
+			);
+			path = CoffeeNow;
+			sourceTree = "<group>";
+		};
+		84F929911DC58656000E8914 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84F929921DC58667000E8914 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		84F929961DC5D523000E8914 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				84F929971DC5D538000E8914 /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		CCB87683DCC99022B91C2D4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84639FC41DBF407B00438B4C /* CoffeeNow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84639FD71DBF407B00438B4C /* Build configuration list for PBXNativeTarget "CoffeeNow" */;
+			buildPhases = (
+				5FF19ED9AC28253B78EB10FF /* Check Pods Manifest.lock */,
+				84639FC11DBF407B00438B4C /* Sources */,
+				84639FC21DBF407B00438B4C /* Frameworks */,
+				84639FC31DBF407B00438B4C /* Resources */,
+				67AA285571D54333BF427C19 /* Embed Pods Frameworks */,
+				C67402451C2D6D7C006CA325 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoffeeNow;
+			productName = CoffeeNow;
+			productReference = 84639FC51DBF407B00438B4C /* CoffeeNow.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84639FBD1DBF407B00438B4C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = CodeWithFelix;
+				TargetAttributes = {
+					84639FC41DBF407B00438B4C = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = SSASSJL7V9;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 84639FC01DBF407B00438B4C /* Build configuration list for PBXProject "CoffeeNow" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84639FBC1DBF407B00438B4C;
+			productRefGroup = 84639FC61DBF407B00438B4C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84639FC41DBF407B00438B4C /* CoffeeNow */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84639FC31DBF407B00438B4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84639FD31DBF407B00438B4C /* LaunchScreen.storyboard in Resources */,
+				844C34D21DC1B9500068735D /* GoogleService-Info.plist in Resources */,
+				84639FD01DBF407B00438B4C /* Assets.xcassets in Resources */,
+				84639FCE1DBF407B00438B4C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5FF19ED9AC28253B78EB10FF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		67AA285571D54333BF427C19 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C67402451C2D6D7C006CA325 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84639FC11DBF407B00438B4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */,
+				84F929901DC56DB0000E8914 /* NewMessageController.swift in Sources */,
+				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
+				84639FCB1DBF407B00438B4C /* MessagesController.swift in Sources */,
+				844C34D01DC189360068735D /* LoginController.swift in Sources */,
+				840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */,
+				84F929931DC58667000E8914 /* User.swift in Sources */,
+				84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */,
+				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		84639FCC1DBF407B00438B4C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84639FCD1DBF407B00438B4C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		84639FD11DBF407B00438B4C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84639FD21DBF407B00438B4C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84639FD51DBF407B00438B4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84639FD61DBF407B00438B4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84639FD81DBF407B00438B4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F02700E7DD637B0D8ABA2C8 /* Pods-CoffeeNow.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CoffeeNow/CoffeeNow.entitlements;
+				DEVELOPMENT_TEAM = SSASSJL7V9;
+				INFOPLIST_FILE = CoffeeNow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		84639FD91DBF407B00438B4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8538EBEF0698CD414004D01 /* Pods-CoffeeNow.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CoffeeNow/CoffeeNow.entitlements;
+				DEVELOPMENT_TEAM = SSASSJL7V9;
+				INFOPLIST_FILE = CoffeeNow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84639FC01DBF407B00438B4C /* Build configuration list for PBXProject "CoffeeNow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84639FD51DBF407B00438B4C /* Debug */,
+				84639FD61DBF407B00438B4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84639FD71DBF407B00438B4C /* Build configuration list for PBXNativeTarget "CoffeeNow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84639FD81DBF407B00438B4C /* Debug */,
+				84639FD91DBF407B00438B4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84639FBD1DBF407B00438B4C /* Project object */;
+}
