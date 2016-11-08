@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class LoginController: UIViewController, FBSDKLoginButtonDelegate {
     
-    var messageController: MessagesController?
+    var messageController: MainViewController?
 
     let inputsContainerView: UIView = {
         let containerView = UIView()
@@ -106,7 +106,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
     
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "coffee-cup")
+        imageView.image = UIImage(named: "coffeeLogo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         

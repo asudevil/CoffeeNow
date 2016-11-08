@@ -91,12 +91,29 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         let ref = FIRDatabase.database().reference().child("messages")
         let childRef = ref.childByAutoId()
         
-        let name = user.name
-        //is it there best thing to include the name inside of the message node
-        let values = ["text": inputTextField.text!, "name": name]
+        guard let fromID = FIRAuth.auth()?.currentUser?.uid, let toID = user.id, let name = user.name, let sendText = inputTextField.text else {
+            return
+        }
+        let timestamp = Int(NSDate.timeIntervalSinceReferenceDate)
+        let values = ["text": sendText, "name": name, "toID": toID, "fromID": fromID, "timestamp": timestamp] as [String : Any]
         childRef.updateChildValues(values)
         
         print("Message Sent")
+    }
+    
+    func observeMessages(){
+        let ref = FIRDatabase.database().reference().child("messages")
+        ref.observe(.childAdded, with: {(snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                print(message.text)
+            }
+            
+            //sdfssf  //This is where you leftoff.  Need to add observeMessage to a collection view of some type.
+            
+            
+        }, withCancel: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

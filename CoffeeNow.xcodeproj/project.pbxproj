@@ -9,13 +9,20 @@
 /* Begin PBXBuildFile section */
 		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
+		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
+		8436D8071DD1BE740086D339 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8061DD1BE740086D339 /* Message.swift */; };
 		844C34D01DC189360068735D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C34CF1DC189360068735D /* LoginController.swift */; };
 		844C34D21DC1B9500068735D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844C34D11DC1B9500068735D /* GoogleService-Info.plist */; };
 		84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FC81DBF407B00438B4C /* AppDelegate.swift */; };
-		84639FCB1DBF407B00438B4C /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FCA1DBF407B00438B4C /* MessagesController.swift */; };
+		84639FCB1DBF407B00438B4C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FCA1DBF407B00438B4C /* MainViewController.swift */; };
 		84639FCE1DBF407B00438B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84639FCC1DBF407B00438B4C /* Main.storyboard */; };
 		84639FD01DBF407B00438B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84639FCF1DBF407B00438B4C /* Assets.xcassets */; };
 		84639FD31DBF407B00438B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84639FD11DBF407B00438B4C /* LaunchScreen.storyboard */; };
+		84B5F0E51DC9B05B003A82C2 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0DC1DC9B05B003A82C2 /* GeoFire.m */; };
+		84B5F0E61DC9B05B003A82C2 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0DE1DC9B05B003A82C2 /* GFBase32Utils.m */; };
+		84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E01DC9B05B003A82C2 /* GFGeoHash.m */; };
+		84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */; };
+		84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E41DC9B05B003A82C2 /* GFQuery.m */; };
 		84F929901DC56DB0000E8914 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9298F1DC56DB0000E8914 /* NewMessageController.swift */; };
 		84F929931DC58667000E8914 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929921DC58667000E8914 /* User.swift */; };
 		84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929941DC5AD74000E8914 /* LoginController+handlers.swift */; };
@@ -27,15 +34,33 @@
 		68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		841469E51DCB0AD40032DA6F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		8436D8061DD1BE740086D339 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		844C34CF1DC189360068735D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		844C34D11DC1B9500068735D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84639FC51DBF407B00438B4C /* CoffeeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84639FC81DBF407B00438B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84639FCA1DBF407B00438B4C /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		84639FCA1DBF407B00438B4C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		84639FCD1DBF407B00438B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84639FCF1DBF407B00438B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84639FD21DBF407B00438B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84639FD41DBF407B00438B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84B5F0D51DC9B05B003A82C2 /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		84B5F0D61DC9B05B003A82C2 /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		84B5F0D71DC9B05B003A82C2 /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		84B5F0D81DC9B05B003A82C2 /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		84B5F0D91DC9B05B003A82C2 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		84B5F0DB1DC9B05B003A82C2 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		84B5F0DC1DC9B05B003A82C2 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		84B5F0DD1DC9B05B003A82C2 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		84B5F0DE1DC9B05B003A82C2 /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		84B5F0DF1DC9B05B003A82C2 /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		84B5F0E01DC9B05B003A82C2 /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		84B5F0E11DC9B05B003A82C2 /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		84B5F0E31DC9B05B003A82C2 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		84B5F0E41DC9B05B003A82C2 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
+		84B5F0EA1DC9B133003A82C2 /* CoffeeNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoffeeNow-Bridging-Header.h"; sourceTree = "<group>"; };
 		84F9298F1DC56DB0000E8914 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		84F929921DC58667000E8914 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84F929941DC5AD74000E8914 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
@@ -78,9 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				844C34CF1DC189360068735D /* LoginController.swift */,
-				84639FCA1DBF407B00438B4C /* MessagesController.swift */,
+				84639FCA1DBF407B00438B4C /* MainViewController.swift */,
 				84F9298F1DC56DB0000E8914 /* NewMessageController.swift */,
-				84F929941DC5AD74000E8914 /* LoginController+handlers.swift */,
 				84F929991DC6B944000E8914 /* ChatLogController.swift */,
 			);
 			name = Controller;
@@ -118,14 +142,56 @@
 				84639FD11DBF407B00438B4C /* LaunchScreen.storyboard */,
 				844C34D11DC1B9500068735D /* GoogleService-Info.plist */,
 				84639FD41DBF407B00438B4C /* Info.plist */,
+				84B5F0D31DC9B05B003A82C2 /* GeoFire */,
+				84B5F0EA1DC9B133003A82C2 /* CoffeeNow-Bridging-Header.h */,
 			);
 			path = CoffeeNow;
+			sourceTree = "<group>";
+		};
+		84B5F0D31DC9B05B003A82C2 /* GeoFire */ = {
+			isa = PBXGroup;
+			children = (
+				84B5F0D41DC9B05B003A82C2 /* API */,
+				84B5F0D91DC9B05B003A82C2 /* GeoFire-Prefix.pch */,
+				84B5F0DA1DC9B05B003A82C2 /* Implementation */,
+			);
+			path = GeoFire;
+			sourceTree = "<group>";
+		};
+		84B5F0D41DC9B05B003A82C2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				84B5F0D51DC9B05B003A82C2 /* GeoFire.h */,
+				84B5F0D61DC9B05B003A82C2 /* GFCircleQuery.h */,
+				84B5F0D71DC9B05B003A82C2 /* GFQuery.h */,
+				84B5F0D81DC9B05B003A82C2 /* GFRegionQuery.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		84B5F0DA1DC9B05B003A82C2 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				84B5F0DB1DC9B05B003A82C2 /* GeoFire+Private.h */,
+				84B5F0DC1DC9B05B003A82C2 /* GeoFire.m */,
+				84B5F0DD1DC9B05B003A82C2 /* GFBase32Utils.h */,
+				84B5F0DE1DC9B05B003A82C2 /* GFBase32Utils.m */,
+				84B5F0DF1DC9B05B003A82C2 /* GFGeoHash.h */,
+				84B5F0E01DC9B05B003A82C2 /* GFGeoHash.m */,
+				84B5F0E11DC9B05B003A82C2 /* GFGeoHashQuery.h */,
+				84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */,
+				84B5F0E31DC9B05B003A82C2 /* GFQuery+Private.h */,
+				84B5F0E41DC9B05B003A82C2 /* GFQuery.m */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		84F929911DC58656000E8914 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				84F929921DC58667000E8914 /* User.swift */,
+				841469E51DCB0AD40032DA6F /* UserAnnotation.swift */,
+				8436D8061DD1BE740086D339 /* Message.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -134,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				84F929971DC5D538000E8914 /* Extensions.swift */,
+				84F929941DC5AD74000E8914 /* LoginController+handlers.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -279,12 +346,19 @@
 				84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */,
 				84F929901DC56DB0000E8914 /* NewMessageController.swift in Sources */,
 				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
-				84639FCB1DBF407B00438B4C /* MessagesController.swift in Sources */,
+				84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */,
+				84B5F0E61DC9B05B003A82C2 /* GFBase32Utils.m in Sources */,
+				84639FCB1DBF407B00438B4C /* MainViewController.swift in Sources */,
 				844C34D01DC189360068735D /* LoginController.swift in Sources */,
 				840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */,
 				84F929931DC58667000E8914 /* User.swift in Sources */,
 				84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */,
 				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
+				84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */,
+				841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */,
+				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
+				84B5F0E51DC9B05B003A82C2 /* GeoFire.m in Sources */,
+				84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +490,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoffeeNow/CoffeeNow-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -431,6 +506,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoffeeNow/CoffeeNow-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
