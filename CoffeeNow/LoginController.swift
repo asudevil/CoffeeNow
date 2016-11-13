@@ -58,7 +58,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
             //successfully logged in our user

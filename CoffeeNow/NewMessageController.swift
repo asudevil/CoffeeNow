@@ -34,10 +34,7 @@ class NewMessageController: UITableViewController {
                 
                     //If you use this setter, your app will crash if your class properties don't excacly match up with the firebase dictionary keys
                        user.setValuesForKeys(dictionary)
-                
                 self.users.append(user)
-                
-                //Must use dispatch_async since this is in the background thread.  If not this will crash.
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -66,7 +63,7 @@ class NewMessageController: UITableViewController {
         if let profileImageUrl = user.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
-        
+
         return cell
     }
     

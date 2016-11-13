@@ -20,7 +20,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
             
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
             
@@ -37,7 +37,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                     
                     if error != nil {
-                        print(error)
+                        print(error!)
                         return
                     }
                     if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
@@ -53,11 +53,11 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
     }
     
     private func registerUserIntoDatabaseWithUID(uid: String, values: [String: Any]) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://coffeenow-1bc87.firebaseio.com/")
+        let ref = FIRDatabase.database().reference()
         let userReference = ref.child("users").child(uid)
         userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
             if err != nil {
-                print(err)
+                print(err!)
                 return
             }
             

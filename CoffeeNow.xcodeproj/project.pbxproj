@@ -11,6 +11,7 @@
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
 		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
 		8436D8071DD1BE740086D339 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8061DD1BE740086D339 /* Message.swift */; };
+		8436D8091DD417C40086D339 /* ChatMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8081DD417C40086D339 /* ChatMsgCell.swift */; };
 		844C34D01DC189360068735D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C34CF1DC189360068735D /* LoginController.swift */; };
 		844C34D21DC1B9500068735D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844C34D11DC1B9500068735D /* GoogleService-Info.plist */; };
 		84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FC81DBF407B00438B4C /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		841469E51DCB0AD40032DA6F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		8436D8061DD1BE740086D339 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8436D8081DD417C40086D339 /* ChatMsgCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMsgCell.swift; sourceTree = "<group>"; };
 		844C34CF1DC189360068735D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		844C34D11DC1B9500068735D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84639FC51DBF407B00438B4C /* CoffeeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				840F5D211DC9409E0028AAA1 /* UserCell.swift */,
+				8436D8081DD417C40086D339 /* ChatMsgCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				84F929931DC58667000E8914 /* User.swift in Sources */,
 				84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */,
 				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
+				8436D8091DD417C40086D339 /* ChatMsgCell.swift in Sources */,
 				84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */,
 				841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */,
 				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
