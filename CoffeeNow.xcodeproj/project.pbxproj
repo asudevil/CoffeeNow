@@ -11,7 +11,10 @@
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
 		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
 		8436D8071DD1BE740086D339 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8061DD1BE740086D339 /* Message.swift */; };
-		8436D8091DD417C40086D339 /* ChatMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8081DD417C40086D339 /* ChatMsgCell.swift */; };
+		8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */; };
+		8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D80C1DD83B550086D339 /* MessagesController.swift */; };
+		8436D80F1DD83FE70086D339 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D80E1DD83FE70086D339 /* ChatMessageCell.swift */; };
+		8436D8111DD948D00086D339 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8101DD948D00086D339 /* NewMessageController.swift */; };
 		844C34D01DC189360068735D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C34CF1DC189360068735D /* LoginController.swift */; };
 		844C34D21DC1B9500068735D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844C34D11DC1B9500068735D /* GoogleService-Info.plist */; };
 		84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FC81DBF407B00438B4C /* AppDelegate.swift */; };
@@ -24,7 +27,6 @@
 		84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E01DC9B05B003A82C2 /* GFGeoHash.m */; };
 		84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */; };
 		84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E41DC9B05B003A82C2 /* GFQuery.m */; };
-		84F929901DC56DB0000E8914 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9298F1DC56DB0000E8914 /* NewMessageController.swift */; };
 		84F929931DC58667000E8914 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929921DC58667000E8914 /* User.swift */; };
 		84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929941DC5AD74000E8914 /* LoginController+handlers.swift */; };
 		84F929981DC5D538000E8914 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929971DC5D538000E8914 /* Extensions.swift */; };
@@ -37,7 +39,10 @@
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		841469E51DCB0AD40032DA6F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		8436D8061DD1BE740086D339 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		8436D8081DD417C40086D339 /* ChatMsgCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMsgCell.swift; sourceTree = "<group>"; };
+		8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMsgSummaryCell.swift; sourceTree = "<group>"; };
+		8436D80C1DD83B550086D339 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		8436D80E1DD83FE70086D339 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		8436D8101DD948D00086D339 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		844C34CF1DC189360068735D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		844C34D11DC1B9500068735D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84639FC51DBF407B00438B4C /* CoffeeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +68,6 @@
 		84B5F0E31DC9B05B003A82C2 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
 		84B5F0E41DC9B05B003A82C2 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		84B5F0EA1DC9B133003A82C2 /* CoffeeNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoffeeNow-Bridging-Header.h"; sourceTree = "<group>"; };
-		84F9298F1DC56DB0000E8914 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		84F929921DC58667000E8914 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84F929941DC5AD74000E8914 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		84F929971DC5D538000E8914 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -97,7 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				840F5D211DC9409E0028AAA1 /* UserCell.swift */,
-				8436D8081DD417C40086D339 /* ChatMsgCell.swift */,
+				8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */,
+				8436D80E1DD83FE70086D339 /* ChatMessageCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -107,7 +112,8 @@
 			children = (
 				844C34CF1DC189360068735D /* LoginController.swift */,
 				84639FCA1DBF407B00438B4C /* MainViewController.swift */,
-				84F9298F1DC56DB0000E8914 /* NewMessageController.swift */,
+				8436D8101DD948D00086D339 /* NewMessageController.swift */,
+				8436D80C1DD83B550086D339 /* MessagesController.swift */,
 				84F929991DC6B944000E8914 /* ChatLogController.swift */,
 			);
 			name = Controller;
@@ -347,7 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */,
-				84F929901DC56DB0000E8914 /* NewMessageController.swift in Sources */,
+				8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */,
 				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
 				84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */,
 				84B5F0E61DC9B05B003A82C2 /* GFBase32Utils.m in Sources */,
@@ -357,11 +363,13 @@
 				84F929931DC58667000E8914 /* User.swift in Sources */,
 				84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */,
 				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
-				8436D8091DD417C40086D339 /* ChatMsgCell.swift in Sources */,
+				8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */,
 				84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */,
 				841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */,
 				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
+				8436D80F1DD83FE70086D339 /* ChatMessageCell.swift in Sources */,
 				84B5F0E51DC9B05B003A82C2 /* GeoFire.m in Sources */,
+				8436D8111DD948D00086D339 /* NewMessageController.swift in Sources */,
 				84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

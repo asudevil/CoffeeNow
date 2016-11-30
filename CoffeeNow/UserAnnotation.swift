@@ -10,16 +10,16 @@ import Foundation
 import MapKit
 
 let userProfiles = [
-    "bulbasaur",
-    "ivysaur",
-    "venusaur",
-    "charmander",
-    "charmeleon",
-    "charizard",
-    "squirtle",
-    "wartortle",
-    "blastoise",
-    "caterpie"
+    "New1",
+    "Test 35",
+    "Niki",
+    "Tester 13",
+    "The President",
+    "John Snow",
+    "Rose",
+    "Tester1",
+    "Tester 33",
+    "Ned Stak"
 ]
 
 class UserAnnotation: NSObject, MKAnnotation {

@@ -2,7 +2,7 @@
 //  NewMessageController.swift
 //  CoffeeNow
 //
-//  Created by admin on 10/29/16.
+//  Created by admin on 11/13/16.
 //  Copyright © 2016 CodeWithFelix. All rights reserved.
 //
 
@@ -12,8 +12,9 @@ import Firebase
 class NewMessageController: UITableViewController {
     
     let cellId = "cellId"
+    
     var users = [User]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,24 +23,25 @@ class NewMessageController: UITableViewController {
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
         fetchUser()
-
     }
+    
     func fetchUser() {
-        FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
+        FIRDatabase.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String: Any] {
+            if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
-                
                 user.id = snapshot.key
                 
-                    //If you use this setter, your app will crash if your class properties don't excacly match up with the firebase dictionary keys
-                       user.setValuesForKeys(dictionary)
+                //if you use this setter, your app will crash if your class properties don't exactly match up with the firebase dictionary keys
+                user.setValuesForKeys(dictionary)
                 self.users.append(user)
                 
+                //this will crash because of background thread, so lets use dispatch_async to fix
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            }
+        }
+            
         }, withCancel: nil)
     }
     
@@ -48,12 +50,10 @@ class NewMessageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
         let user = users[indexPath.row]
@@ -63,22 +63,22 @@ class NewMessageController: UITableViewController {
         if let profileImageUrl = user.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
-
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 72
     }
     
+    var messagesController: MessagesController?
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let selectedUser = users[indexPath.row]
-        
-        let layout = UICollectionViewFlowLayout()
-        let chatLogController = ChatLogController(collectionViewLayout: layout, userInput: selectedUser)
-            
-        navigationController?.pushViewController(chatLogController, animated: true)
+        dismiss(animated: true) {
+            print("Dismiss completed")
+            let user = self.users[indexPath.row]
+            self.messagesController?.showChatControllerForUser(user)
+        }
     }
-
 }
+

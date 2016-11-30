@@ -157,12 +157,11 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 clickedChatMessage = false
             }
         } else {
-            let user = User()
-            let selectedUser = user
+
             let layout = UICollectionViewFlowLayout()
-            let chatLogController = ChatLogController(collectionViewLayout: layout, userInput: selectedUser)
+            let messagesController = MessagesController(collectionViewLayout: layout)
             
-            navigationController?.pushViewController(chatLogController, animated: true)
+            navigationController?.pushViewController(messagesController, animated: true)
             clickedChatMessage = false
         }
     }
@@ -199,9 +198,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     
     func handleNewMessage() {
-        let newMessageController = NewMessageController()
-        let navcontroller = UINavigationController(rootViewController: newMessageController)
-        present(navcontroller, animated: true, completion: nil)
+
+        
+        let layout = UICollectionViewFlowLayout()
+        let messagesController = MessagesController(collectionViewLayout: layout)
+        
+        navigationController?.pushViewController(messagesController, animated: true)
     }
     
     func checkIfUserIsLoggedIn() {
@@ -241,7 +243,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
-        mapView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        mapView.heightAnchor.constraint(equalToConstant: 500).isActive = true
     }
 
     func setupSpotPersonButton() {

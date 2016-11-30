@@ -1,5 +1,5 @@
 //
-//  ChatMsgCell.swift
+//  ChatMsgSummaryCell.swift
 //  CoffeeNow
 //
 //  Created by admin on 11/9/16.
@@ -9,12 +9,12 @@
 import UIKit
 import Firebase
 
-class ChatMsgCell: UICollectionViewCell {
+class ChatMsgSummaryCell: UICollectionViewCell {
     
     var message: Message? {
         didSet {
             
-            setupUserName()
+            setupNameAndProfileImage()
             self.msgLabel.text = message?.text
             
             if let seconds = message?.timestamp?.doubleValue {
@@ -26,7 +26,7 @@ class ChatMsgCell: UICollectionViewCell {
         }
     }
     
-    private func setupUserName() {
+    private func setupNameAndProfileImage() {
         
         let chatPartnerId: String?
         
@@ -41,10 +41,23 @@ class ChatMsgCell: UICollectionViewCell {
             ref.observe(.value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     self.connectionName.text = dictionary["name"] as? String
+                    
+                    if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+                        self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+                    }
                 }
             }, withCancel: nil)
         }
     }
+    
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 24
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
     
     var connectionName: UILabel = {
         let label = UILabel()
@@ -88,18 +101,24 @@ class ChatMsgCell: UICollectionViewCell {
     
     func setupViews() {
         
+        addSubview(profileImageView)
         addSubview(msgLabel)
         addSubview(dividerLineView)
         addSubview(connectionName)
         addSubview(timeMsg)
         
-        connectionName.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        connectionName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        connectionName.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        connectionName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 60).isActive = true
         connectionName.heightAnchor.constraint(equalToConstant: 20).isActive = true
         connectionName.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         
         msgLabel.topAnchor.constraint(equalTo: connectionName.bottomAnchor, constant: 5).isActive = true
-        msgLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        msgLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 60).isActive = true
         msgLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         msgLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
 
