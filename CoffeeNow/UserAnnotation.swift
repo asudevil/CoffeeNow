@@ -25,15 +25,17 @@ let userProfiles = [
 class UserAnnotation: NSObject, MKAnnotation {
     
     var coordinate = CLLocationCoordinate2D()
-    var userNumber:  Int
+    var userNumber:  String
     var userName: String
     var title: String?
+    var imageUrl: String?
     
     
-    init(coordinate: CLLocationCoordinate2D, userNumber: Int) {
+    init(coordinate: CLLocationCoordinate2D, userId: String, userName: String, profileImageUrl: String) {
         self.coordinate = coordinate
-        self.userNumber = userNumber
-        self.userName = userProfiles[userNumber - 1].capitalized
+        self.userNumber = userId
+        self.userName = userName.capitalized
         self.title = self.userName
+        self.imageUrl = profileImageUrl
     }
 }

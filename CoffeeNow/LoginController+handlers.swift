@@ -52,6 +52,15 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
         })
     }
     
+    func registerFacebook(user: FIRUser) {
+        
+        let profileImageUrl = "https://firebasestorage.googleapis.com/v0/b/coffeenow-1bc87.appspot.com/o/profile_images%2F9B403AA9-19CE-4670-AEA3-D5E006A791F6.jpg?alt=media&token=ff652448-25c8-40fb-a61a-ee88078e9f62"
+        
+        let values = ["name": user.displayName, "email": user.email, "profileImageUrl": profileImageUrl]
+        self.registerUserIntoDatabaseWithUID(uid: user.uid, values: values)
+        
+    }
+    
     private func registerUserIntoDatabaseWithUID(uid: String, values: [String: Any]) {
         let ref = FIRDatabase.database().reference()
         let userReference = ref.child("users").child(uid)

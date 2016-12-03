@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import MapKit
+import FBSDKLoginKit
 
 class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -16,6 +17,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var mapHasCenteredOnce = false
     var geofire: GeoFire!
     var geoFireRef: FIRDatabaseReference!
+    private var loggedInUserName: String!
+    private var loggedInId: String!
     
     let mapView: MKMapView = {
        let mp = MKMapView()
@@ -31,6 +34,16 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         button.backgroundColor = .green
         button.setImage(UIImage(named: "coffeeLogo"), for: .normal)
         return button
+    }()
+    
+    
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
  
     override func viewDidLoad() {
@@ -91,7 +104,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             }
         }
     }
-
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let annoIdentifier = "Profile"
@@ -110,7 +123,21 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if let annotationView = annotationView, let anno = annotation as? UserAnnotation {
             annotationView.canShowCallout = true
-            annotationView.image = UIImage(named: "\(anno.userNumber)")
+            
+            if let url = anno.imageUrl {
+                imageView.loadImageUsingCacheWithUrlString(urlString: url)
+            } else {
+                imageView.image = UIImage(named: "profileImage")
+            }
+            
+            let size = CGSize(width: 50, height: 50)
+            UIGraphicsBeginImageContext(size)
+            imageView.image?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            annotationView.image = resizedImage
+
             let btn = UIButton()
             btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             btn.setImage(UIImage(named: "map"), for: .normal)
@@ -166,34 +193,48 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
     
-    
-    func createSighting(forLocation location: CLLocation, withUser userId: Int) {
+    func createSighting(forLocation location: CLLocation, withUser userId: String) {
         geofire.setLocation(location, forKey: "\(userId)")
     }
     
     func showSightingsOnMap(location: CLLocation) {
-        let circleQuery = geofire.query(at: location, withRadius: 3.5)
+        let circleQuery = geofire.query(at: location, withRadius: 4.5)
+        
+        var userName = "No Name"
         
         _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, locationIn) in
             
             if let key = key, let location = locationIn {
-                let anno = UserAnnotation(coordinate: location.coordinate, userNumber: Int(key)!)
                 
-                print("showing sighting on map.  Coordinates: \(location.coordinate). \n Key is \(key)")
-                
-                self.mapView.addAnnotation(anno)
+                FIRDatabase.database().reference().child("users").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        guard let profileImageUrl = dictionary["profileImageUrl"] as? String else {
+                            return
+                        }
+                        if let name = dictionary["name"] as? String {
+                            userName = name
+                            
+                            let anno = UserAnnotation(coordinate: location.coordinate, userId: key, userName: userName, profileImageUrl: profileImageUrl)
+                            
+                            self.mapView.addAnnotation(anno)
+
+                        }
+                    }
+                    
+                }, withCancel: nil)                
             }
             
         })
     }
     
     func spotRandomPerson() {
+        
         let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         
-        let rand = arc4random_uniform(10) + 1
-        createSighting(forLocation: loc, withUser: Int(rand))
+        createSighting(forLocation: loc, withUser: loggedInId)
         
-        print("Random number is: \(rand)")
+        print("Setting location for uid: \(loggedInId)")
     }
 
     
@@ -219,10 +260,14 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             return
         }
+        
+        loggedInId = uid
+        
         FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
-                self.navigationItem.title = dictionary["name"] as? String
+                self.loggedInUserName = dictionary["name"] as? String
+                self.navigationItem.title = self.loggedInUserName
             }
         }, withCancel: nil)
     }
@@ -234,6 +279,13 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         } catch let logoutError {
             print(logoutError)
         }
+        
+        let facebookLogin = FBSDKLoginManager()
+        facebookLogin.logOut()
+        
+        print("Did Logout")
+
+        
         let loginController = LoginController()
         loginController.messageController = self
         present(loginController, animated: true, completion: nil)

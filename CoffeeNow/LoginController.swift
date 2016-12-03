@@ -67,7 +67,43 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         })
         
     }
+    
+    func handleFacebookLogin() {
+        let accessToken = FBSDKAccessToken.current()
         
+        guard let accessTokenString = accessToken?.tokenString else { return }
+        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        
+        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
+            if error != nil {
+                print("Something is wrong with our facebook user" , error ?? "")
+                
+                return
+            }
+            //successfully logged in our user
+            print("successfully logged in facebook user", user ?? "" )
+            
+            let ref = FIRDatabase.database().reference()
+            var userRegistered = false
+            
+            ref.ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                if snapshot.exists() {
+                    print("User exists")
+                    print("User already exist so fetching user and setup nav bar")
+                    self.messageController?.fetchUserAndSetupNavBarTitle()
+                    self.dismiss(animated: true, completion: nil)
+                    
+                } else {
+                    print("User doesnt exist", user?.uid)
+                    print("Setting up new user!!!!")
+                    guard let userToRegister = user else { return }
+                    self.registerFacebook(user: userToRegister)
+                }
+            }, withCancel: nil)
+        })
+        
+    }
+    
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
@@ -164,6 +200,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         setupLoginRegisterSegmentedControl()
         setupFacebookLoginButton()
         
+        facebookLoginButton.readPermissions = ["email", "public_profile"]
+        
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -174,7 +212,19 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
             print(error)
             return
         }
-        print("Successfully logged in with facebook!!!!!")
+        
+        handleFacebookLogin()
+
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
+            
+            if err != nil {
+                print("Failed to state graph request", err)
+                return
+            }
+            
+            print(result)
+        }
+        
     }
     
     func setupLoginRegisterSegmentedControl() {
