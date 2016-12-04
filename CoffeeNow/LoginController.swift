@@ -65,7 +65,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
             self.messageController?.fetchUserAndSetupNavBarTitle()
             self.dismiss(animated: true, completion: nil)
         })
-        
     }
     
     func handleFacebookLogin() {
@@ -77,31 +76,27 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             if error != nil {
                 print("Something is wrong with our facebook user" , error ?? "")
-                
                 return
             }
+            
+            let pictureJSON = user?.photoURL
+            
+            print("Profile picture", pictureJSON ?? "")
+            
             //successfully logged in our user
-            print("successfully logged in facebook user", user ?? "" )
-            
             let ref = FIRDatabase.database().reference()
-            var userRegistered = false
-            
-            ref.ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
-                    print("User exists")
-                    print("User already exist so fetching user and setup nav bar")
+                    print("User already exist so fetching user and setup nav bar for ", user?.uid ?? "")
                     self.messageController?.fetchUserAndSetupNavBarTitle()
                     self.dismiss(animated: true, completion: nil)
-                    
                 } else {
-                    print("User doesnt exist", user?.uid)
-                    print("Setting up new user!!!!")
+                    print("User doesnt exist.  Setting up new user!!!!", user?.uid ?? "")
                     guard let userToRegister = user else { return }
                     self.registerFacebook(user: userToRegister)
                 }
             }, withCancel: nil)
         })
-        
     }
     
     let nameTextField: UITextField = {
@@ -215,7 +210,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         
         handleFacebookLogin()
 
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"]).start { (connection, result, err) in
             
             if err != nil {
                 print("Failed to state graph request", err)
