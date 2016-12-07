@@ -58,7 +58,10 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                print(error!)
+                print("Error Logging in !!!!!!", error!)
+                
+                self.loginAlert()
+                
                 return
             }
             //successfully logged in our user
@@ -76,6 +79,9 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             if error != nil {
                 print("Something is wrong with our facebook user" , error ?? "")
+                
+                self.loginAlert()
+                
                 return
             }
             
@@ -239,6 +245,12 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
     var nameTextFieldHeightAnchor: NSLayoutConstraint?
     var emailTextFieldHeightAnchor: NSLayoutConstraint?
     var passwordTextFieldHeightAnchor: NSLayoutConstraint?
+    
+    func loginAlert() {
+        let alert = UIAlertController(title: "Error Logging In", message: "Username or Password is incorrect.  Please check and try again", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     
     func setupInputContrainerView() {

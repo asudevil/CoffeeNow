@@ -184,12 +184,17 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 clickedChatMessage = false
             }
         } else {
-
-            let layout = UICollectionViewFlowLayout()
-            let messagesController = MessagesController(collectionViewLayout: layout)
             
-            navigationController?.pushViewController(messagesController, animated: true)
-            clickedChatMessage = false
+            self.clickedChatMessage = false
+            let selectedUser = view.annotation as? UserAnnotation
+            let userToChatWith = User()
+            userToChatWith.id = selectedUser?.userNumber
+            userToChatWith.name = selectedUser?.userName
+            userToChatWith.profileImageUrl = selectedUser?.imageUrl
+
+            let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+            chatLogController.user = userToChatWith
+            navigationController?.pushViewController(chatLogController, animated: true)
         }
     }
     
