@@ -20,13 +20,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     private var loggedInUserName: String!
     private var loggedInId: String!
     private var selectedAnno: UserAnnotation!
-    
+        
     let mapView: MKMapView = {
        let mp = MKMapView()
         mp.backgroundColor = UIColor.brown
         mp.translatesAutoresizingMaskIntoConstraints = false
         return mp
-        
     }()
  
     let randomPerson: UIButton = {
@@ -36,7 +35,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         button.setImage(UIImage(named: "coffeeLogo"), for: .normal)
         return button
     }()
-    
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -60,9 +58,13 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setImage(UIImage(named: "settings"), for: .normal)
         return btn
-        
     }()
     
+    lazy var optionsSelector: OptionsSelector = {
+        let launcher = OptionsSelector()
+        launcher.mainViewController = self
+        return launcher
+    }()
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,20 +80,18 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let image = UIImage(named: "list-icon")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
         randomPerson.addTarget(self, action: #selector(spotRandomPerson), for: .touchUpInside)
-
-        //Map views
-        view.addSubview(mapView)
-        view.addSubview(randomPerson)
-        view.addSubview(settingBtn)
-        setupMapContainerView()
-        setupSpotPersonButton()
-        setupSettingBnt()
-        
+        settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
+        setupViewsAndButtons()
         checkIfUserIsLoggedIn()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         locationAuthStatus()
+    }
+    
+    func clickedSettings (_ button: UIButton) {
+        print("Clicked on Setting Button!!!!!")
+            optionsSelector.showOptions()
     }
     func locationAuthStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -129,7 +129,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if let selectedAnnotation = view.annotation as? UserAnnotation {
             selectedAnno = selectedAnnotation
         }
-
     }
     
     
@@ -185,30 +184,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             annoContainer.addSubview(chatBtn)
             annoContainer.addSubview(profileDetailsAnno)
             annotationView.leftCalloutAccessoryView = annoContainer
-            
         }
         return annotationView
-    }
-    
-    
-    func showChatMessage() {
-        let userToChatWith = User()
-        userToChatWith.id = selectedAnno.userNumber
-        userToChatWith.name = selectedAnno.userName
-        userToChatWith.profileImageUrl = selectedAnno.imageUrl
-        
-        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        chatLogController.user = userToChatWith
-        navigationController?.pushViewController(chatLogController, animated: true)
-    }
-    
-    func profileDetailsTap() {
-        
-        let profileDetailsController = ProfileDetailsVC()
-        profileDetailsController.profileAnno = selectedAnno
-        
-        navigationController?.pushViewController(profileDetailsController, animated: true)
-        
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
@@ -216,7 +193,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         showSightingsOnMap(location: loc)
     }
-    
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
@@ -235,13 +211,30 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
     
+    func showChatMessage() {
+        let userToChatWith = User()
+        userToChatWith.id = selectedAnno.userNumber
+        userToChatWith.name = selectedAnno.userName
+        userToChatWith.profileImageUrl = selectedAnno.imageUrl
+        
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = userToChatWith
+        navigationController?.pushViewController(chatLogController, animated: true)
+    }
+    
+    func profileDetailsTap() {
+        let profileDetailsController = ProfileDetailsVC()
+        profileDetailsController.profileAnno = selectedAnno
+        
+        navigationController?.pushViewController(profileDetailsController, animated: true)
+    }
+    
     func createSighting(forLocation location: CLLocation, withUser userId: String) {
         geofire.setLocation(location, forKey: "\(userId)")
     }
     
     func showSightingsOnMap(location: CLLocation) {
         let circleQuery = geofire.query(at: location, withRadius: 4.5)
-        
         var userName = "No Name"
         
         _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, locationIn) in
@@ -251,13 +244,11 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 FIRDatabase.database().reference().child("users").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
                     
                     if let dictionary = snapshot.value as? [String: Any] {
-                        
                         guard let profileImageUrl = dictionary["profileImageUrl"] as? String else {
                             return
                         }
                         if let name = dictionary["name"] as? String {
                             userName = name
-                            
                             let anno = UserAnnotation(coordinate: location.coordinate, userId: key, userName: userName, profileImageUrl: profileImageUrl)
                             self.mapView.addAnnotation(anno)
                         }
@@ -268,15 +259,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func spotRandomPerson() {
-        
         let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         createSighting(forLocation: loc, withUser: loggedInId)
         print("Setting location for uid: \(loggedInId)")
     }
-
     
     func handleNewMessage() {
-
         let layout = UICollectionViewFlowLayout()
         let messagesController = MessagesController(collectionViewLayout: layout)
         navigationController?.pushViewController(messagesController, animated: true)
@@ -292,10 +280,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func fetchUserAndSetupNavBarTitle() {        
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-            return
-        }
-        
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         loggedInId = uid
         
         FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -309,43 +294,38 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func handleLogout() {
         
-        do {
-            try FIRAuth.auth()?.signOut()
+        do { try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
         }
         
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logOut()
-        
         print("Did Logout")
 
-        
         let loginController = LoginController()
         loginController.messageController = self
         present(loginController, animated: true, completion: nil)
     }
     
-    func setupMapContainerView () {
+    func setupViewsAndButtons() {
+        view.addSubview(mapView)
+        view.addSubview(randomPerson)
+        view.addSubview(settingBtn)
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
         mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
-    }
-
-    func setupSpotPersonButton() {
         
-        randomPerson.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35).isActive = true
+        settingBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35).isActive = true
+        settingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
+        settingBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        settingBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        randomPerson.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35).isActive = true
         randomPerson.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
         randomPerson.widthAnchor.constraint(equalToConstant: 50).isActive = true
         randomPerson.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    func setupSettingBnt() {
-        settingBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35).isActive = true
-        settingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
-        settingBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        settingBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-
 }
 

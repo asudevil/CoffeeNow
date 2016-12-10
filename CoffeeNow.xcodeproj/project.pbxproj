@@ -11,6 +11,8 @@
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
 		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
 		842011FE1DF94C8B0025307A /* ProfileDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */; };
+		842FF7D91DFCB1760027C52B /* OptionsSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FF7D81DFCB1760027C52B /* OptionsSelector.swift */; };
+		842FF7DB1DFCB6A20027C52B /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */; };
 		8436D8071DD1BE740086D339 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8061DD1BE740086D339 /* Message.swift */; };
 		8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */; };
 		8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D80C1DD83B550086D339 /* MessagesController.swift */; };
@@ -40,6 +42,8 @@
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		841469E51DCB0AD40032DA6F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsVC.swift; sourceTree = "<group>"; };
+		842FF7D81DFCB1760027C52B /* OptionsSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsSelector.swift; sourceTree = "<group>"; };
+		842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
 		8436D8061DD1BE740086D339 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMsgSummaryCell.swift; sourceTree = "<group>"; };
 		8436D80C1DD83B550086D339 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 				840F5D211DC9409E0028AAA1 /* UserCell.swift */,
 				8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */,
 				8436D80E1DD83FE70086D339 /* ChatMessageCell.swift */,
+				842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			children = (
 				844C34CF1DC189360068735D /* LoginController.swift */,
 				84639FCA1DBF407B00438B4C /* MainViewController.swift */,
+				842FF7D81DFCB1760027C52B /* OptionsSelector.swift */,
 				8436D8101DD948D00086D339 /* NewMessageController.swift */,
 				8436D80C1DD83B550086D339 /* MessagesController.swift */,
 				84F929991DC6B944000E8914 /* ChatLogController.swift */,
@@ -357,6 +363,7 @@
 			files = (
 				84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */,
 				842011FE1DF94C8B0025307A /* ProfileDetailsVC.swift in Sources */,
+				842FF7DB1DFCB6A20027C52B /* OptionsCell.swift in Sources */,
 				8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */,
 				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
 				84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */,
@@ -365,6 +372,7 @@
 				844C34D01DC189360068735D /* LoginController.swift in Sources */,
 				840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */,
 				84F929931DC58667000E8914 /* User.swift in Sources */,
+				842FF7D91DFCB1760027C52B /* OptionsSelector.swift in Sources */,
 				84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */,
 				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
 				8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */,
