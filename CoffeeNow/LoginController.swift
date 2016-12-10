@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class LoginController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
     var messageController: MainViewController?
 
@@ -41,6 +41,86 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.delegate = self
         return loginButton
     }()
+    
+    let nameTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Name"
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.masksToBounds = true
+        return tf
+    }()
+    
+    let nameSeperatorView: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor(r: 220, g: 220, b: 220, a: 1)
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        return lineView
+    }()
+    
+    let emailTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Email"
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    let emailSeperatorView: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor(r: 220, g: 220, b: 220, a: 1)
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        return lineView
+    }()
+    let passwordTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Password"
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.isSecureTextEntry = true
+        return tf
+    }()
+    
+    lazy var profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "coffeeLogo")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
+       return imageView
+    }()
+    
+    lazy var loginRegisterSegmentedControl: UISegmentedControl = {
+        let sc = UISegmentedControl(items: ["Login", "Register"])
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.tintColor = UIColor.white
+        sc.selectedSegmentIndex = 1
+        sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
+        return sc
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = UIColor(r: 61, g: 91, b: 151, a: 1)
+        view.addSubview(inputsContainerView)
+        view.addSubview(loginRegisterButton)
+        view.addSubview(profileImageView)
+        view.addSubview(loginRegisterSegmentedControl)
+        view.addSubview(facebookLoginButton)
+        
+        setupInputContrainerView()
+        setupLoginRegisterButton()
+        setupProfileImageView()
+        setupLoginRegisterSegmentedControl()
+        setupFacebookLoginButton()
+        
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        
+        facebookLoginButton.readPermissions = ["email", "public_profile"]
+        
+    }
     
     func handleLoginRegister() {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
@@ -85,11 +165,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             }
             
-            let pictureJSON = user?.photoURL
-            
-            print("Profile picture", pictureJSON ?? "")
-            
-            //successfully logged in our user
             let ref = FIRDatabase.database().reference()
             ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
@@ -104,64 +179,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
             }, withCancel: nil)
         })
     }
-    
-    let nameTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Name"
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.layer.masksToBounds = true
-        return tf
-    }()
-    
-    let nameSeperatorView: UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = UIColor(r: 220, g: 220, b: 220, a: 1)
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        return lineView
-    }()
-    
-    let emailTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Email"
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
-    
-    let emailSeperatorView: UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = UIColor(r: 220, g: 220, b: 220, a: 1)
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        return lineView
-    }()
-    let passwordTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Password"
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.isSecureTextEntry = true
-        return tf
-    }()
-    
-    lazy var profileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "coffeeLogo")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
-        
-        imageView.isUserInteractionEnabled = true
-        
-       return imageView
-    }()
-    
-    lazy var loginRegisterSegmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Login", "Register"])
-        sc.translatesAutoresizingMaskIntoConstraints = false
-        sc.tintColor = UIColor.white
-        sc.selectedSegmentIndex = 1
-        sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
-        return sc
-    }()
     
     func handleLoginRegisterChange () {
         
@@ -184,26 +201,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 1/2 : 1/3)
         passwordTextFieldHeightAnchor?.isActive = true
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        view.backgroundColor = UIColor(r: 61, g: 91, b: 151, a: 1)
-        view.addSubview(inputsContainerView)
-        view.addSubview(loginRegisterButton)
-        view.addSubview(profileImageView)
-        view.addSubview(loginRegisterSegmentedControl)
-        view.addSubview(facebookLoginButton)
-        
-        setupInputContrainerView()
-        setupLoginRegisterButton()
-        setupProfileImageView()
-        setupLoginRegisterSegmentedControl()
-        setupFacebookLoginButton()
-        
-        facebookLoginButton.readPermissions = ["email", "public_profile"]
-        
-    }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Did log out of facebook")
@@ -216,16 +214,17 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         
         handleFacebookLogin()
 
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"]).start { (connection, result, err) in
-            
-            if err != nil {
-                print("Failed to state graph request", err)
-                return
-            }
-            
-            print(result)
-        }
-        
+//        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, first_name, email, picture, about, gender, location"]).start { (connection, result, err) in
+//            
+//            if err != nil {
+//                print("Failed to state graph request", err)
+//                return
+//            }
+//            
+//            working on adding more info to profile page
+//            
+//            print("RESULTS!!! ", result)
+//        }
     }
     
     func setupLoginRegisterSegmentedControl() {
@@ -234,24 +233,23 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         loginRegisterSegmentedControl.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
         loginRegisterSegmentedControl.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1).isActive = true
         loginRegisterSegmentedControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    var inputsContainerViewHeightAnchor: NSLayoutConstraint?
-    var nameTextFieldHeightAnchor: NSLayoutConstraint?
-    var emailTextFieldHeightAnchor: NSLayoutConstraint?
-    var passwordTextFieldHeightAnchor: NSLayoutConstraint?
     
     func loginAlert() {
         let alert = UIAlertController(title: "Error Logging In", message: "Username or Password is incorrect.  Please check and try again", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
+    
+    var inputsContainerViewHeightAnchor: NSLayoutConstraint?
+    var nameTextFieldHeightAnchor: NSLayoutConstraint?
+    var emailTextFieldHeightAnchor: NSLayoutConstraint?
+    var passwordTextFieldHeightAnchor: NSLayoutConstraint?
     
     func setupInputContrainerView() {
 
@@ -310,13 +308,20 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate {
         profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
-    
     func setupFacebookLoginButton() {
         facebookLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         facebookLoginButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12).isActive = true
         facebookLoginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         facebookLoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        nameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 }

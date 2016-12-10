@@ -10,6 +10,7 @@
 		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
 		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
+		842011FE1DF94C8B0025307A /* ProfileDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */; };
 		8436D8071DD1BE740086D339 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8061DD1BE740086D339 /* Message.swift */; };
 		8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */; };
 		8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D80C1DD83B550086D339 /* MessagesController.swift */; };
@@ -38,6 +39,7 @@
 		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		841469E51DCB0AD40032DA6F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsVC.swift; sourceTree = "<group>"; };
 		8436D8061DD1BE740086D339 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMsgSummaryCell.swift; sourceTree = "<group>"; };
 		8436D80C1DD83B550086D339 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				8436D8101DD948D00086D339 /* NewMessageController.swift */,
 				8436D80C1DD83B550086D339 /* MessagesController.swift */,
 				84F929991DC6B944000E8914 /* ChatLogController.swift */,
+				842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */,
+				842011FE1DF94C8B0025307A /* ProfileDetailsVC.swift in Sources */,
 				8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */,
 				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
 				84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */,
