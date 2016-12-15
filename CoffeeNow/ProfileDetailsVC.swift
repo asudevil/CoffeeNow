@@ -64,7 +64,7 @@ class ProfileDetailsVC: UIViewController {
     let addContactBtn: UIButton = {
         let addBtn = UIButton()
         addBtn.translatesAutoresizingMaskIntoConstraints = false
-        addBtn.backgroundColor = UIColor.gray
+        addBtn.backgroundColor = UIColor.white
         addBtn.layer.masksToBounds = true
         addBtn.contentMode = .scaleAspectFill
         addBtn.setImage(UIImage(named: "addUser"), for: .normal)
@@ -82,7 +82,7 @@ class ProfileDetailsVC: UIViewController {
     let blockContactBtn: UIButton = {
         let blockBtn = UIButton()
         blockBtn.translatesAutoresizingMaskIntoConstraints = false
-        blockBtn.backgroundColor = UIColor.gray
+        blockBtn.backgroundColor = UIColor.white
         blockBtn.layer.masksToBounds = true
         blockBtn.contentMode = .scaleAspectFill
         blockBtn.setImage(UIImage(named: "blockImage"), for: .normal)
@@ -99,9 +99,7 @@ class ProfileDetailsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.white
-        
         guard let profileTitle = profileAnno?.title, let profileImageUrl = profileAnno?.imageUrl else { return }
         
         self.navigationItem.title = profileTitle
@@ -124,7 +122,6 @@ class ProfileDetailsVC: UIViewController {
         view.addSubview(blockContactBtn)
         view.addSubview(blockUserLabel)
 
-        
         //x, y, width and height constraints
         imageContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         imageContainer.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true

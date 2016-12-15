@@ -82,15 +82,19 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         randomPerson.addTarget(self, action: #selector(spotRandomPerson), for: .touchUpInside)
         settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
         setupViewsAndButtons()
-        checkIfUserIsLoggedIn()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        checkIfUserIsLoggedIn()
+        
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        loggedInId = uid
+        
         locationAuthStatus()
     }
     
     func clickedSettings (_ button: UIButton) {
-        print("Clicked on Setting Button!!!!!")
             optionsSelector.showOptions()
     }
     func locationAuthStatus() {
@@ -229,6 +233,15 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         navigationController?.pushViewController(profileDetailsController, animated: true)
     }
     
+    func editProfileTapped() {
+        let editProfileController = EditProfileVC()
+        navigationController?.pushViewController(editProfileController, animated: true)
+    }
+    func changeSettingsTapped() {
+        let changeSettingsVC = ChangeSettings()
+        navigationController?.pushViewController(changeSettingsVC, animated: true)
+    }
+    
     func createSighting(forLocation location: CLLocation, withUser userId: String) {
         geofire.setLocation(location, forKey: "\(userId)")
     }
@@ -281,7 +294,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func fetchUserAndSetupNavBarTitle() {        
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        loggedInId = uid
         
         FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             

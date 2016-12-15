@@ -9,7 +9,6 @@
 import UIKit
 
 class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     let settingOptions = ["Change Settings","Edit Profile","My Account","Logout"]
     let settingsImages = ["settings", "editProfile", "myAccount", "logout"]
     let cellId = "cellId"
@@ -55,9 +54,7 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.5
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Clicked on \(settingOptions[indexPath.item])")
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
         handleDismiss(indexPath.item)
     }
     
@@ -83,6 +80,7 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
             }, completion: nil)
         }
     }
+    
     func handleDismiss(_ selectedOption: Int) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
@@ -95,6 +93,22 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
             
             print("Show selected Options view")
             //     self.shopifyProductVariationVC?.showShoppingCartWithSelection()
+            
+            switch selectedOption {
+            case 0:
+                print("Changing Settings")
+                self.mainViewController?.changeSettingsTapped()
+            case 1:
+                print("Editing Profile")
+                self.mainViewController?.editProfileTapped()
+            case 2:
+                print("My Account")
+            case 3:
+                print("Loging out")
+                self.mainViewController?.handleLogout()
+            default:
+                print("Do nothing")
+            }
 
         }
     }

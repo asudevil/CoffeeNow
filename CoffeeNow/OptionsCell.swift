@@ -45,7 +45,6 @@ class OptionsCell: UICollectionViewCell {
     
     func setupViews() {
         
-        
         addSubview(iconImageView)
         addSubview(nameLabel)
 
@@ -54,7 +53,7 @@ class OptionsCell: UICollectionViewCell {
         iconImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         iconImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        nameLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 30).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 20).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
