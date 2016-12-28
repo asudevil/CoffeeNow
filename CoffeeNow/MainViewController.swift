@@ -277,10 +277,9 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logOut()
         
-//        var blankProfile = ProfileDetails.sharedInstance.getProfileDetails()
-//        blankProfile?.removeAll()
-//        
-//        ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: blankProfile!)
+        ProfileDetails.sharedInstance.allDetailsDictionary?.removeAll()
+        
+        //ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: blankProfile)
         
         print("Did Logout")
 

@@ -23,7 +23,7 @@ class ProfileDetails: NSObject {
 //    fileprivate var linkedInProfile: String?
 //    fileprivate var details: String?
     
-    fileprivate var allDetailsDictionary: [String: Any]?
+    var allDetailsDictionary: [String: Any]?
     
     static let sharedInstance = ProfileDetails()
     

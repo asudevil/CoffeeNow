@@ -80,17 +80,28 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             
             //Detail Info
             var dbInfo = [String: Any]()
-            if let fbImageUrl   = userDetailsOutput["imageUrl"] as? String { dbInfo.updateValue(fbImageUrl, forKey: "imageUrl") }
-            if let fbUserName   = userDetailsOutput["userName"] as? String { dbInfo.updateValue(fbUserName, forKey: "userName") }
-            if let fbFirstName  = userDetailsOutput["firstName"] as? String { dbInfo.updateValue(fbFirstName, forKey: "firstName") }
-            if let fbLastName   = userDetailsOutput["lastName"] as? String { dbInfo.updateValue(fbLastName, forKey: "lastName") }
-            if let fbLocation   = userDetailsOutput["location"] as? String { dbInfo.updateValue(fbLocation, forKey: "location") }
-            if let fbEmail      = userDetailsOutput["email"] as? String { dbInfo.updateValue(fbEmail, forKey: "email") }
-            if let fbPhone      = userDetailsOutput["phone"] as? String { dbInfo.updateValue(fbPhone, forKey: "phone") }
-            if let fbGender     = userDetailsOutput["gender"] as? String { dbInfo.updateValue(fbGender, forKey: "gender") }
-            if let fbOccupation = userDetailsOutput["occupation"] as? String { dbInfo.updateValue(fbOccupation, forKey: "occupation") }
-            if let fbLinkedIn   = userDetailsOutput["linkedIn"] as? String { dbInfo.updateValue(fbLinkedIn, forKey: "linkedIn") }
-            if let fbDetails    = userDetailsOutput["details"] as? String { dbInfo.updateValue(fbDetails, forKey: "details") }
+            if let fbImageUrl   = userDetailsOutput["imageUrl"] as? String { dbInfo.updateValue(fbImageUrl, forKey: "imageUrl")
+            } else { dbInfo.updateValue("", forKey: "imageUrl") }
+            if let fbUserName   = userDetailsOutput["userName"] as? String { dbInfo.updateValue(fbUserName, forKey: "userName")
+            } else { dbInfo.updateValue("", forKey: "userName") }
+            if let fbFirstName  = userDetailsOutput["firstName"] as? String { dbInfo.updateValue(fbFirstName, forKey: "firstName")
+            } else { dbInfo.updateValue("", forKey: "firstName") }
+            if let fbLastName   = userDetailsOutput["lastName"] as? String { dbInfo.updateValue(fbLastName, forKey: "lastName")
+            } else { dbInfo.updateValue("", forKey: "lastName") }
+            if let fbLocation   = userDetailsOutput["location"] as? String { dbInfo.updateValue(fbLocation, forKey: "location")
+            } else { dbInfo.updateValue("", forKey: "location")}
+            if let fbEmail      = userDetailsOutput["email"] as? String { dbInfo.updateValue(fbEmail, forKey: "email")
+            } else { dbInfo.updateValue("", forKey: "email") }
+            if let fbPhone      = userDetailsOutput["phone"] as? String { dbInfo.updateValue(fbPhone, forKey: "phone")
+            } else { dbInfo.updateValue("", forKey: "phone") }
+            if let fbGender     = userDetailsOutput["gender"] as? String { dbInfo.updateValue(fbGender, forKey: "gender")
+            } else { dbInfo.updateValue("", forKey: "gender") }
+            if let fbOccupation = userDetailsOutput["occupation"] as? String { dbInfo.updateValue(fbOccupation, forKey: "occupation")
+            } else {dbInfo.updateValue("", forKey: "occupation")}
+            if let fbLinkedIn   = userDetailsOutput["linkedIn"] as? String { dbInfo.updateValue(fbLinkedIn, forKey: "linkedIn")
+            } else {dbInfo.updateValue("", forKey: "linkedIn") }
+            if let fbDetails    = userDetailsOutput["details"] as? String { dbInfo.updateValue(fbDetails, forKey: "details")
+            } else {dbInfo.updateValue("", forKey: "details")}
             self.addUserDetailsIntoDataBaseWithUID(uid: user.uid, values: dbInfo)
         }
     }

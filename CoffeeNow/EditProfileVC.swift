@@ -220,9 +220,9 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         if let gender       = saveDetails?["gender"]     as? String { self.genderTextField.text = gender }
         if let loc          = saveDetails?["location"]   as? String { self.locationTextField.text = loc }
         if let phone        = saveDetails?["phone"]      as? String { self.phoneTextField.text = phone }
-        if let title        = saveDetails?["occupation"] as? String { self.genderTextField.text = title }
-        if let LN           = saveDetails?["linkedIn"]   as? String { self.genderTextField.text = LN }
-        if let details      = saveDetails?["details"]    as? String { self.genderTextField.text = details }
+        if let title        = saveDetails?["occupation"] as? String { self.occupationTextField.text = title }
+        if let LN           = saveDetails?["linkedIn"]   as? String { self.linkedInTextField.text = LN }
+        if let details      = saveDetails?["details"]    as? String { self.profileInfoTextField.text = details }
         if let imgUrl       = saveDetails?["imageUrl"]   as? String {
             self.profileImageView.loadImageUsingCacheWithUrlString(urlString: imgUrl)
         }
@@ -244,6 +244,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         updatedProfileText(fieldToUpdate: "occupation", newInfo: occupationTextField.text)
         updatedProfileText(fieldToUpdate: "linkedIn", newInfo: linkedInTextField.text)
         updatedProfileText(fieldToUpdate: "details", newInfo: profileInfoTextField.text)
+        navigationController?.popViewController(animated: true)
     }
     
     func updatedProfileText(fieldToUpdate: String, newInfo: String?) {
@@ -251,9 +252,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         var profileDetailsDic = ProfileDetails.sharedInstance.getProfileDetails()
         
         if let user = profileDetailsDic?[fieldToUpdate] as? String {
-            if user == newInfo {
-                print("No changes")
-            } else {
+            if user != newInfo {
                 profileDetailsDic?.updateValue(newInfo, forKey: fieldToUpdate)
                 ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: profileDetailsDic!)
                 print("Setting ProfileDetails to:", ProfileDetails.sharedInstance.getProfileDetails() ?? "")
