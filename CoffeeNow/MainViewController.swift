@@ -39,7 +39,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -93,25 +93,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         locationAuthStatus()
     }
-    
-    func clickedSettings (_ button: UIButton) {
-            optionsSelector.showOptions()
-    }
-    func locationAuthStatus() {
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            mapView.showsUserLocation = true
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-        if status == CLAuthorizationStatus.authorizedWhenInUse {
-            mapView.showsUserLocation = true
-        }
-    }
-    
+
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000)
         
@@ -134,7 +116,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             selectedAnno = selectedAnnotation
         }
     }
-    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -192,12 +173,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-        
-        showSightingsOnMap(location: loc)
-    }
-    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if let selectedUser = view.annotation as? UserAnnotation {
@@ -211,7 +186,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 let regionSpan = MKCoordinateRegionMakeWithDistance(selectedUser.coordinate, regionDistance, regionDistance)
                 let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving] as [String : Any]
                 MKMapItem.openMaps(with: [destination], launchOptions: options)
-                
         }
     }
     
@@ -231,19 +205,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         profileDetailsController.profileAnno = selectedAnno
         
         navigationController?.pushViewController(profileDetailsController, animated: true)
-    }
-    
-    func editProfileTapped() {
-        let editProfileController = EditProfileVC()
-        navigationController?.pushViewController(editProfileController, animated: true)
-    }
-    func changeSettingsTapped() {
-        let changeSettingsVC = ChangeSettings()
-        navigationController?.pushViewController(changeSettingsVC, animated: true)
-    }
-    
-    func createSighting(forLocation location: CLLocation, withUser userId: String) {
-        geofire.setLocation(location, forKey: "\(userId)")
     }
     
     func showSightingsOnMap(location: CLLocation) {
@@ -275,12 +236,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         createSighting(forLocation: loc, withUser: loggedInId)
         print("Setting location for uid: \(loggedInId)")
-    }
-    
-    func handleNewMessage() {
-        let layout = UICollectionViewFlowLayout()
-        let messagesController = MessagesController(collectionViewLayout: layout)
-        navigationController?.pushViewController(messagesController, animated: true)
     }
     
     func checkIfUserIsLoggedIn() {
@@ -318,26 +273,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let loginController = LoginController()
         loginController.messageController = self
         present(loginController, animated: true, completion: nil)
-    }
-    
-    func setupViewsAndButtons() {
-        view.addSubview(mapView)
-        view.addSubview(randomPerson)
-        view.addSubview(settingBtn)
-        mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
-        
-        settingBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35).isActive = true
-        settingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
-        settingBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        settingBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        randomPerson.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35).isActive = true
-        randomPerson.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
-        randomPerson.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        randomPerson.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 

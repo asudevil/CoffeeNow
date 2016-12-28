@@ -23,6 +23,7 @@
 		8436D8111DD948D00086D339 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D8101DD948D00086D339 /* NewMessageController.swift */; };
 		844C34D01DC189360068735D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C34CF1DC189360068735D /* LoginController.swift */; };
 		844C34D21DC1B9500068735D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844C34D11DC1B9500068735D /* GoogleService-Info.plist */; };
+		844FCCB71E05ED3400EAA562 /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FCCB61E05ED3400EAA562 /* MyAccount.swift */; };
 		84639FC91DBF407B00438B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FC81DBF407B00438B4C /* AppDelegate.swift */; };
 		84639FCB1DBF407B00438B4C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84639FCA1DBF407B00438B4C /* MainViewController.swift */; };
 		84639FCE1DBF407B00438B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84639FCC1DBF407B00438B4C /* Main.storyboard */; };
@@ -33,8 +34,8 @@
 		84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E01DC9B05B003A82C2 /* GFGeoHash.m */; };
 		84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */; };
 		84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E41DC9B05B003A82C2 /* GFQuery.m */; };
+		84EEC1341E0F8468008189DF /* Main+MapView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */; };
 		84F347AF1E00F945006FE365 /* ChangeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F347AE1E00F945006FE365 /* ChangeSettings.swift */; };
-		84F347B11E011CF0006FE365 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F347B01E011CF0006FE365 /* TableViewController.swift */; };
 		84F929931DC58667000E8914 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929921DC58667000E8914 /* User.swift */; };
 		84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929941DC5AD74000E8914 /* LoginController+handlers.swift */; };
 		84F929981DC5D538000E8914 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929971DC5D538000E8914 /* Extensions.swift */; };
@@ -59,6 +60,7 @@
 		8436D8101DD948D00086D339 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		844C34CF1DC189360068735D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		844C34D11DC1B9500068735D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		844FCCB61E05ED3400EAA562 /* MyAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		84639FC51DBF407B00438B4C /* CoffeeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84639FC81DBF407B00438B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84639FCA1DBF407B00438B4C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -82,8 +84,8 @@
 		84B5F0E31DC9B05B003A82C2 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
 		84B5F0E41DC9B05B003A82C2 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		84B5F0EA1DC9B133003A82C2 /* CoffeeNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoffeeNow-Bridging-Header.h"; sourceTree = "<group>"; };
+		84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Main+MapView+Ext.swift"; sourceTree = "<group>"; };
 		84F347AE1E00F945006FE365 /* ChangeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeSettings.swift; sourceTree = "<group>"; };
-		84F347B01E011CF0006FE365 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		84F929921DC58667000E8914 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84F929941DC5AD74000E8914 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		84F929971DC5D538000E8914 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -136,7 +138,7 @@
 				842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */,
 				842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */,
 				84F347AE1E00F945006FE365 /* ChangeSettings.swift */,
-				84F347B01E011CF0006FE365 /* TableViewController.swift */,
+				844FCCB61E05ED3400EAA562 /* MyAccount.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -164,9 +166,9 @@
 			children = (
 				840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */,
 				84F929961DC5D523000E8914 /* Helpers */,
-				84F929911DC58656000E8914 /* Model */,
 				84639FC81DBF407B00438B4C /* AppDelegate.swift */,
 				844C34CE1DC189020068735D /* Controller */,
+				84F929911DC58656000E8914 /* Model */,
 				840F5D201DC940610028AAA1 /* Cell */,
 				84639FCC1DBF407B00438B4C /* Main.storyboard */,
 				84639FCF1DBF407B00438B4C /* Assets.xcassets */,
@@ -234,6 +236,7 @@
 				84F929971DC5D538000E8914 /* Extensions.swift */,
 				84F929941DC5AD74000E8914 /* LoginController+handlers.swift */,
 				842FF7DE1DFD05F00027C52B /* EditProfile+Handlers.swift */,
+				84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -385,6 +388,8 @@
 				84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */,
 				84B5F0E61DC9B05B003A82C2 /* GFBase32Utils.m in Sources */,
 				842FF7DD1DFCD2EF0027C52B /* EditProfileVC.swift in Sources */,
+				844FCCB71E05ED3400EAA562 /* MyAccount.swift in Sources */,
+				84EEC1341E0F8468008189DF /* Main+MapView+Ext.swift in Sources */,
 				84639FCB1DBF407B00438B4C /* MainViewController.swift in Sources */,
 				844C34D01DC189360068735D /* LoginController.swift in Sources */,
 				840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */,
@@ -401,7 +406,6 @@
 				84F347AF1E00F945006FE365 /* ChangeSettings.swift in Sources */,
 				842FF7E11DFE09900027C52B /* ProfileDetails.swift in Sources */,
 				8436D8111DD948D00086D339 /* NewMessageController.swift in Sources */,
-				84F347B11E011CF0006FE365 /* TableViewController.swift in Sources */,
 				84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

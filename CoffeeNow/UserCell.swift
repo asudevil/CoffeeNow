@@ -40,7 +40,6 @@ class UserCell: UITableViewCell {
                         self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
                     }
                 }
-                
             }, withCancel: nil)
         }
     }

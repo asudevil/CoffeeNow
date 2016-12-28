@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 extension LoginController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -28,9 +29,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 return
             }
             //Successfully authenticated user
-            
             let imageName = NSUUID().uuidString
-            
             let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
             
             if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
@@ -57,9 +56,59 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
         guard let image = profileImageUrl as String! else { return }
         print("Register Facebook ProfileImageUrl = ", image)
         
-        let values = ["name": user.displayName, "email": user.email, "profileImageUrl": image]
-        self.registerUserIntoDatabaseWithUID(uid: user.uid, values: values)
-        
+        getUserDetails { (userDetailsOutput) in
+            
+            guard let userName = userDetailsOutput["firstName"], let email = userDetailsOutput["email"], let imageUrl = userDetailsOutput["imageUrl"] else {
+                return
+            }
+            let values = ["name": userName, "email": email, "profileImageUrl": imageUrl]
+            self.registerUserIntoDatabaseWithUID(uid: user.uid, values: values)
+        }
+    }
+    
+    func getUserDetails(completion: @escaping ([String: Any]) -> ()) {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, first_name, last_name, email, picture, about, gender, location"]).start { (connection, result, err) in
+            
+            var userDetails = [String: Any]()
+            
+            if err != nil {
+                print("Failed to state graph request", err ?? "")
+                return
+            }
+            print("RESULTS!!! ", result ?? "")
+            
+            if let resultDictionary = result as? [String: Any] {
+                if let username = resultDictionary["first_name"] as? String {
+                    userDetails.updateValue(username, forKey: "userName")
+                }
+                if let firstName = resultDictionary["first_name"] as? String {
+                    userDetails.updateValue(firstName, forKey: "firstName")
+                }
+                if let lastName = resultDictionary["last_name"] as? String {
+                    userDetails.updateValue(lastName, forKey: "lastName")
+                }
+                if let location = resultDictionary["location"] as? String {
+                    userDetails.updateValue(location, forKey: "location")
+                }
+                if let email = resultDictionary["email"] as? String {
+                    userDetails.updateValue(email, forKey: "email")
+                }
+                if let gender = resultDictionary["gender"] as? String {
+                    userDetails.updateValue(gender, forKey: "gender")
+                }
+                if let picture = resultDictionary["picture"] as? [String: Any] {
+                    if let data = picture["data"] as? [String: Any] {
+                        if let profileImgUrl = data["url"] as? String {
+                            userDetails.updateValue(profileImgUrl, forKey: "imageUrl")
+                        }
+                    }
+                }
+            }
+            completion(userDetails)
+            
+            ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: userDetails)
+
+        }
     }
     
     private func registerUserIntoDatabaseWithUID(uid: String, values: [String: Any]) {
@@ -70,10 +119,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 print(err!)
                 return
             }
-            
-    //        self.messageController?.fetchUserAndSetupNavBarTitle()
             self.messageController?.navigationItem.title = values["name"] as? String
-            
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -81,7 +127,6 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
     func handleSelectProfileImageView() {
         let picker = UIImagePickerController()
         picker.delegate = self
-
         present(picker, animated: true, completion: nil)
     }
     
@@ -102,7 +147,6 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
         print("Canceled Picker")
         dismiss(animated: true, completion: nil)
     }
@@ -110,7 +154,6 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
 extension UIColor {
     
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a:CGFloat) {
-        
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }

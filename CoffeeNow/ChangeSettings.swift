@@ -13,12 +13,14 @@ class ChangeSettings: UIViewController, UITableViewDelegate, UITableViewDataSour
     let cellIdentifier = "Cell"
     
     var tableView: UITableView  =   UITableView()
-    let settingsSection1 = ["Account","Privacy","Notifications", "Language", "Sounds"]
+    let settingsSection1 = ["Account","Privacy","Notifications", "Language", "Contacts"]
     let settingsSection2 = ["Messages","Nearby Places","Friends","Events","Location","Favorites", "Blocking"]
+    
+    let settingsImages1 = ["account", "privacy", "notification", "language", "contacts"]
+    let settingsImages2 = ["messages", "nearby_places", "contacts", "event", "location","addUser","blockImage"]
     
     let sectionHeaders = ["Privacy", "Contacts"]
     let sectionFooters = ["Set your privacy preferences","Edit your contacts settings"]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +54,15 @@ class ChangeSettings: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         switch indexPath.section {
         case 0:
-            cell.textLabel!.text = settingsSection1 [indexPath.row]
-            
+            cell.textLabel!.text = settingsSection1[indexPath.row]
+//            cell.imageView?.image = UIImage(named: settingsImages1[indexPath.row])
+
         case 1:
-            cell.textLabel!.text = settingsSection2 [indexPath.row]
+            cell.textLabel!.text = settingsSection2[indexPath.row]
         default: break
         }
+        
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell;
     }

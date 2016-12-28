@@ -12,7 +12,7 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
     let settingOptions = ["Change Settings","Edit Profile","My Account","Logout"]
     let settingsImages = ["settings", "editProfile", "myAccount", "logout"]
     let cellId = "cellId"
-    let cellHeight: CGFloat = 50
+    let cellHeight: CGFloat = 55
     
     var selectedProduct: String!
     
@@ -103,6 +103,7 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
                 self.mainViewController?.editProfileTapped()
             case 2:
                 print("My Account")
+                self.mainViewController?.myAccountTapped()
             case 3:
                 print("Loging out")
                 self.mainViewController?.handleLogout()

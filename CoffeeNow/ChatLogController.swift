@@ -73,10 +73,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView?.keyboardDismissMode = .interactive
-        
-        //        setupInputComponents()
-        //
-        //        setupKeyboardObservers()
     }
     
     lazy var inputContainerView: UIView = {

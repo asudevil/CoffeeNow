@@ -44,7 +44,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
     
     let nameTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Name"
+        tf.placeholder = "Username"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.layer.masksToBounds = true
         return tf
@@ -117,6 +117,12 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        //Change Image:
+        if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
+            profileImageView.image = UIImage(named: "coffeeLogo")
+        } else if loginRegisterSegmentedControl.selectedSegmentIndex == 1 {
+            profileImageView.image = UIImage(named: "selectPic")
+        }
         
         facebookLoginButton.readPermissions = ["email", "public_profile"]
         
@@ -185,7 +191,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
         let title = loginRegisterSegmentedControl.titleForSegment(at: loginRegisterSegmentedControl.selectedSegmentIndex)
         loginRegisterButton.setTitle(title, for: .normal)
         
-        // change height of inputContainerView, but how???
+        // change height of inputContainerView
         inputsContainerViewHeightAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 100 : 150
         
         //change height of nameTextField
@@ -200,6 +206,13 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
         passwordTextFieldHeightAnchor?.isActive = false
         passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 1/2 : 1/3)
         passwordTextFieldHeightAnchor?.isActive = true
+        
+        //Change Image:
+        if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
+            profileImageView.image = UIImage(named: "coffeeLogo")
+        } else if loginRegisterSegmentedControl.selectedSegmentIndex == 1 {
+            profileImageView.image = UIImage(named: "selectPic")
+        }
     }
 
     
@@ -213,18 +226,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
         }
         
         handleFacebookLogin()
-
-//        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, first_name, email, picture, about, gender, location"]).start { (connection, result, err) in
-//            
-//            if err != nil {
-//                print("Failed to state graph request", err)
-//                return
-//            }
-//            
-//            working on adding more info to profile page
-//            
-//            print("RESULTS!!! ", result)
-//        }
     }
     
     func setupLoginRegisterSegmentedControl() {
@@ -238,7 +239,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
     
     func loginAlert() {
         let alert = UIAlertController(title: "Error Logging In", message: "Username or Password is incorrect.  Please check and try again", preferredStyle: UIAlertControllerStyle.alert)
@@ -260,7 +260,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
         inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 150)
         inputsContainerViewHeightAnchor?.isActive = true
 
-        
         inputsContainerView.addSubview(nameTextField)
         inputsContainerView.addSubview(nameSeperatorView)
         inputsContainerView.addSubview(emailTextField)
@@ -294,7 +293,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
         passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         passwordTextFieldHeightAnchor?.isActive = true
-        
     }
     func setupLoginRegisterButton() {
         loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
