@@ -36,15 +36,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         return button
     }()
     
-    let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
     let annoContainer: UIView = {
        let container = UIView()
         container.backgroundColor = UIColor.white
@@ -58,6 +49,16 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setImage(UIImage(named: "settings"), for: .normal)
         return btn
+    }()
+    
+    lazy var locatonSpotter: UIView = {
+        let spot = UIView()
+        spot.translatesAutoresizingMaskIntoConstraints = false
+        spot.frame = CGRect(x: self.view.frame.width/2  , y: self.view.frame.height/2, width: 10, height: 10)
+        spot.layer.cornerRadius = 5
+        spot.backgroundColor = UIColor.blue
+        spot.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLocationSpotter)))
+        return spot
     }()
     
     lazy var optionsSelector: OptionsSelector = {
@@ -79,7 +80,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         let image = UIImage(named: "list-icon")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
-        randomPerson.addTarget(self, action: #selector(spotRandomPerson), for: .touchUpInside)
+        randomPerson.addTarget(self, action: #selector(spotUserAtLocation), for: .touchUpInside)
         settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
         setupViewsAndButtons()
         loadProfileDetails()
@@ -136,18 +137,22 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if let annotationView = annotationView, let anno = annotation as? UserAnnotation {
             annotationView.canShowCallout = true
             
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.layer.cornerRadius = 25
+            imageView.layer.masksToBounds = true
+            imageView.contentMode = .scaleAspectFill
+            
             if let url = anno.imageUrl {
                 imageView.loadImageUsingCacheWithUrlString(urlString: url)
             } else {
                 imageView.image = UIImage(named: "profileImage")
             }
             
-            let size = CGSize(width: 50, height: 50)
-            UIGraphicsBeginImageContext(size)
-            imageView.image?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            UIGraphicsBeginImageContext(imageView.bounds.size)
+            imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            
             annotationView.image = resizedImage
 
             let mapBtn = UIButton()
@@ -232,10 +237,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         })
     }
     
-    func spotRandomPerson() {
+    func spotUserAtLocation() {
         let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         createSighting(forLocation: loc, withUser: loggedInId)
         print("Setting location for uid: \(loggedInId)")
+        locatonSpotter.isHidden = true
+        viewDidLoad()
     }
     
     func checkIfUserIsLoggedIn() {
@@ -286,6 +293,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let loginController = LoginController()
         loginController.messageController = self
         present(loginController, animated: true, completion: nil)
+    }
+    
+    func tapLocationSpotter() {
+        print("Location spotter tapped")
     }
 }
 

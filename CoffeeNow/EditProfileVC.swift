@@ -65,7 +65,6 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         tf.layer.masksToBounds = true
         return tf
     }()
-    
     let lastName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +72,6 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         label.text = "Last Name:   "
         return label
     }()
-    
     let lastNameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Last Name"
@@ -181,6 +179,14 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         return tf
     }()
     
+    let containerView: UIView = {
+       let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.layer.masksToBounds = true
+        container.backgroundColor = UIColor.white
+        return container
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -205,10 +211,42 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         profileInfoTextField.delegate = self
         
         setupProfileViews()
+        
+        setupKeyboardObservers()
     }
     override func viewWillAppear(_ animated: Bool) {
         getUserDetails()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setupKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+    }
+    
+    func handleKeyboardWillShow (notifcation: NSNotification) {
+        let keyboardFrame = (notifcation.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        let keyboardDuration = (notifcation.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+        
+        containerViewTopAnchor?.constant = -keyboardFrame!.height + 104
+        UIView.animate(withDuration: keyboardDuration!) { 
+            self.view.layoutIfNeeded()
+        }
+    }
+    func handleKeyboardWillHide(notification: NSNotification) {
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+        
+        containerViewTopAnchor?.constant = 0
+        UIView.animate(withDuration: keyboardDuration!) {
+            self.view.layoutIfNeeded()
+        }
+
+        
+    }
+    
     func getUserDetails() {
         
         let saveDetails = ProfileDetails.sharedInstance.getProfileDetails()
@@ -255,38 +293,47 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
             if user != newInfo {
                 profileDetailsDic?.updateValue(newInfo, forKey: fieldToUpdate)
                 ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: profileDetailsDic!)
-                print("Setting ProfileDetails to:", ProfileDetails.sharedInstance.getProfileDetails() ?? "")
             }
         }
     }
     
+    var containerViewTopAnchor: NSLayoutConstraint?
+    
     func setupProfileViews() {
         
-        view.addSubview(profileImageView)
-        view.addSubview(editImageBtn)
-        view.addSubview(userName)
-        view.addSubview(usernameTextField)
-        view.addSubview(firstName)
-        view.addSubview(firstNameTextField)
-        view.addSubview(lastName)
-        view.addSubview(lastNameTextField)
-        view.addSubview(location)
-        view.addSubview(locationTextField)
-        view.addSubview(emailLabel)
-        view.addSubview(emailTextField)
-        view.addSubview(phoneLabel)
-        view.addSubview(phoneTextField)
-        view.addSubview(genderLabel)
-        view.addSubview(genderTextField)
-        view.addSubview(occupation)
-        view.addSubview(occupationTextField)
-        view.addSubview(linkedIn)
-        view.addSubview(linkedInTextField)
-        view.addSubview(profileInfo)
-        view.addSubview(profileInfoTextField)
+        view.addSubview(containerView)
+        containerView.addSubview(profileImageView)
+        containerView.addSubview(editImageBtn)
+        containerView.addSubview(userName)
+        containerView.addSubview(usernameTextField)
+        containerView.addSubview(firstName)
+        containerView.addSubview(firstNameTextField)
+        containerView.addSubview(lastName)
+        containerView.addSubview(lastNameTextField)
+        containerView.addSubview(location)
+        containerView.addSubview(locationTextField)
+        containerView.addSubview(emailLabel)
+        containerView.addSubview(emailTextField)
+        containerView.addSubview(phoneLabel)
+        containerView.addSubview(phoneTextField)
+        containerView.addSubview(genderLabel)
+        containerView.addSubview(genderTextField)
+        containerView.addSubview(occupation)
+        containerView.addSubview(occupationTextField)
+        containerView.addSubview(linkedIn)
+        containerView.addSubview(linkedInTextField)
+        containerView.addSubview(profileInfo)
+        containerView.addSubview(profileInfoTextField)
+        
+        containerViewTopAnchor = containerView.topAnchor.constraint(equalTo: view.topAnchor)
+        containerViewTopAnchor?.isActive = true
+        
+        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        containerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 70).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 130).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
         
@@ -316,7 +363,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         firstNameTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
         lastName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        lastName.topAnchor.constraint(equalTo: firstName.bottomAnchor, constant: 10).isActive = true
+        lastName.topAnchor.constraint(equalTo: firstName.bottomAnchor, constant: 5).isActive = true
         lastName.widthAnchor.constraint(equalToConstant: 120).isActive = true
         lastName.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -326,17 +373,17 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         lastNameTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
         location.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        location.topAnchor.constraint(equalTo: lastName.bottomAnchor, constant: 10).isActive = true
+        location.topAnchor.constraint(equalTo: lastName.bottomAnchor, constant: 5).isActive = true
         location.widthAnchor.constraint(equalToConstant: 120).isActive = true
         location.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         locationTextField.leftAnchor.constraint(equalTo: location.rightAnchor, constant: 10).isActive = true
-        locationTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 10).isActive = true
+        locationTextField.topAnchor.constraint(equalTo: location.topAnchor).isActive = true
         locationTextField.widthAnchor.constraint(equalToConstant: 200).isActive = true
         locationTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         emailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        emailLabel.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 10).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 5).isActive = true
         emailLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
         emailLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -346,7 +393,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         emailTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         phoneLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        phoneLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10).isActive = true
+        phoneLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 5).isActive = true
         phoneLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
         phoneLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -356,7 +403,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         phoneTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         genderLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        genderLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 10).isActive = true
+        genderLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 5).isActive = true
         genderLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
         genderLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -366,7 +413,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         genderTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         occupation.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        occupation.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 10).isActive = true
+        occupation.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 5).isActive = true
         occupation.widthAnchor.constraint(equalToConstant: 120).isActive = true
         occupation.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -376,7 +423,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         occupationTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         linkedIn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        linkedIn.topAnchor.constraint(equalTo: occupation.bottomAnchor, constant: 10).isActive = true
+        linkedIn.topAnchor.constraint(equalTo: occupation.bottomAnchor, constant: 5).isActive = true
         linkedIn.widthAnchor.constraint(equalToConstant: 120).isActive = true
         linkedIn.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -386,7 +433,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         linkedInTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         profileInfo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        profileInfo.topAnchor.constraint(equalTo: linkedIn.bottomAnchor, constant: 10).isActive = true
+        profileInfo.topAnchor.constraint(equalTo: linkedIn.bottomAnchor, constant: 5).isActive = true
         profileInfo.widthAnchor.constraint(equalToConstant: 120).isActive = true
         profileInfo.heightAnchor.constraint(equalToConstant: 30).isActive = true
         

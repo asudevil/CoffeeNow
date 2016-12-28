@@ -62,6 +62,7 @@ extension MainViewController {
         view.addSubview(mapView)
         view.addSubview(randomPerson)
         view.addSubview(settingBtn)
+        view.addSubview(locatonSpotter)
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true

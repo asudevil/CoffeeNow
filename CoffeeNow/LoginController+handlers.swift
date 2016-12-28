@@ -108,15 +108,11 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
     
     func getFBUserDetails(completion: @escaping ([String: Any]) -> ()) {
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, first_name, last_name, email, picture, about, gender, location"]).start { (connection, result, err) in
-            
-            var userDetails = [String: Any]()
-            
             if err != nil {
                 print("Failed to state graph request", err ?? "")
                 return
             }
-            print("RESULTS!!! ", result ?? "")
-            
+            var userDetails = [String: Any]()
             if let resultDictionary = result as? [String: Any] {
                 if let username = resultDictionary["first_name"] as? String {
                     userDetails.updateValue(username, forKey: "userName")
