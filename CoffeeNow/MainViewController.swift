@@ -82,6 +82,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         randomPerson.addTarget(self, action: #selector(spotRandomPerson), for: .touchUpInside)
         settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
         setupViewsAndButtons()
+        loadProfileDetails()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +91,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         loggedInId = uid
-        
         locationAuthStatus()
     }
 
@@ -258,6 +258,14 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             }
         }, withCancel: nil)
     }
+    func loadProfileDetails() {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        FIRDatabase.database().reference().child("users-details").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: dictionary)
+            }
+        }, withCancel: nil)
+    }
     
     func handleLogout() {
         
@@ -268,6 +276,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logOut()
+        
+//        var blankProfile = ProfileDetails.sharedInstance.getProfileDetails()
+//        blankProfile?.removeAll()
+//        
+//        ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: blankProfile!)
+        
         print("Did Logout")
 
         let loginController = LoginController()

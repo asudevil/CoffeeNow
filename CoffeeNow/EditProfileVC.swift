@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FBSDKLoginKit
 
 class EditProfileVC: UIViewController, UITextFieldDelegate {
@@ -208,6 +209,24 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         getUserDetails()
     }
+    func getUserDetails() {
+        
+        let saveDetails = ProfileDetails.sharedInstance.getProfileDetails()
+        
+        if let email        = saveDetails?["email"]      as? String { self.emailTextField.text = email }
+        if let userName     = saveDetails?["userName"]  as? String { self.usernameTextField.text = userName }
+        if let firstName    = saveDetails?["firstName"]  as? String { self.firstNameTextField.text = firstName }
+        if let lastName     = saveDetails?["lastName"]   as? String { self.lastNameTextField.text = lastName }
+        if let gender       = saveDetails?["gender"]     as? String { self.genderTextField.text = gender }
+        if let loc          = saveDetails?["location"]   as? String { self.locationTextField.text = loc }
+        if let phone        = saveDetails?["phone"]      as? String { self.phoneTextField.text = phone }
+        if let title        = saveDetails?["occupation"] as? String { self.genderTextField.text = title }
+        if let LN           = saveDetails?["linkedIn"]   as? String { self.genderTextField.text = LN }
+        if let details      = saveDetails?["details"]    as? String { self.genderTextField.text = details }
+        if let imgUrl       = saveDetails?["imageUrl"]   as? String {
+            self.profileImageView.loadImageUsingCacheWithUrlString(urlString: imgUrl)
+        }
+    }
 
     func cancelButton() {
         navigationController?.popViewController(animated: true)
@@ -215,7 +234,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     func saveButton() {
         print("Save Button clicked!!")
         updatedProfileText(fieldToUpdate: "imageUrl", newInfo: self.profileImageUrl)
-        updatedProfileText(fieldToUpdate: "username", newInfo: usernameTextField.text)
+        updatedProfileText(fieldToUpdate: "userName", newInfo: usernameTextField.text)
         updatedProfileText(fieldToUpdate: "firstName", newInfo: firstNameTextField.text)
         updatedProfileText(fieldToUpdate: "lastName", newInfo: lastNameTextField.text)
         updatedProfileText(fieldToUpdate: "location", newInfo: locationTextField.text)
@@ -231,35 +250,14 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         
         var profileDetailsDic = ProfileDetails.sharedInstance.getProfileDetails()
         
-        print("Inside UpdatedProfileText", fieldToUpdate, newInfo, profileDetailsDic)
-        
         if let user = profileDetailsDic?[fieldToUpdate] as? String {
-            
-            print("Inside profileUpdate If let")
-            
             if user == newInfo {
-                print("\(fieldToUpdate) are the same", user, newInfo)
+                print("No changes")
             } else {
                 profileDetailsDic?.updateValue(newInfo, forKey: fieldToUpdate)
                 ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: profileDetailsDic!)
-                print("Setting ProfileDetails to:", ProfileDetails.sharedInstance.getProfileDetails())
+                print("Setting ProfileDetails to:", ProfileDetails.sharedInstance.getProfileDetails() ?? "")
             }
-        }
-    }
-
-    func getUserDetails() {
-        
-        let saveDetails = ProfileDetails.sharedInstance.getProfileDetails()
-        
-        print("Inside getUserDetails", saveDetails)
-        
-        if let email        = saveDetails?["email"]     as? String { self.emailTextField.text = email }
-        if let username     = saveDetails?["firstName"] as? String { self.usernameTextField.text = username }
-        if let firstname    = saveDetails?["firstName"] as? String { self.firstNameTextField.text = firstname }
-        if let lastName     = saveDetails?["lastName"]  as? String { self.lastNameTextField.text = lastName }
-        if let gender       = saveDetails?["gender"]    as? String { self.genderTextField.text = gender }
-        if let imgUrl       = saveDetails?["imageUrl"]  as? String {
-                self.profileImageView.loadImageUsingCacheWithUrlString(urlString: imgUrl)
         }
     }
     

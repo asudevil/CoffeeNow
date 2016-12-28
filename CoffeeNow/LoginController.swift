@@ -152,6 +152,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
             }
             //successfully logged in our user
             self.messageController?.fetchUserAndSetupNavBarTitle()
+            self.messageController?.loadProfileDetails()
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -176,6 +177,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
                 if snapshot.exists() {
                     print("User already exist so fetching user and setup nav bar for ", user?.uid ?? "")
                     self.messageController?.fetchUserAndSetupNavBarTitle()
+                    self.messageController?.loadProfileDetails()
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     print("User doesnt exist.  Setting up new user!!!!", user?.uid ?? "")
