@@ -143,7 +143,6 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             completion(userDetails)
             
             ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: userDetails)
-
         }
     }
     
@@ -155,7 +154,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 print(err!)
                 return
             }
-            self.messageController?.navigationItem.title = values["name"] as? String
+            self.mainVC?.navigationItem.title = values["name"] as? String
             self.dismiss(animated: true, completion: nil)
         })
     }

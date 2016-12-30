@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
-    var messageController: MainViewController?
+    var mainVC: MainViewController?
 
     let inputsContainerView: UIView = {
         let containerView = UIView()
@@ -151,8 +151,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
                 return
             }
             //successfully logged in our user
-            self.messageController?.fetchUserAndSetupNavBarTitle()
-            self.messageController?.loadProfileDetails()
+            self.mainVC?.fetchUserAndSetupNavBarTitle()
+            self.mainVC?.loadProfileDetails()
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -176,8 +176,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
             ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     print("User already exist so fetching user and setup nav bar for ", user?.uid ?? "")
-                    self.messageController?.fetchUserAndSetupNavBarTitle()
-                    self.messageController?.loadProfileDetails()
+                    self.mainVC?.fetchUserAndSetupNavBarTitle()
+                    self.mainVC?.loadProfileDetails()
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     print("User doesnt exist.  Setting up new user!!!!", user?.uid ?? "")

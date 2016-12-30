@@ -27,7 +27,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     override init(collectionViewLayout: UICollectionViewLayout) {
         super.init(collectionViewLayout: collectionViewLayout)
- //       self.user = userInput
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -157,8 +157,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             let recipientUserMessagesRef = FIRDatabase.database().reference().child("user-messages").child(toID)
             recipientUserMessagesRef.updateChildValues([messageId: 1])
         }
-        
-        print("Message Sent")
     }
     func handleNewMessage() {
         let newMessageController = NewMessageController()

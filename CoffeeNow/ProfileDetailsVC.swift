@@ -61,7 +61,7 @@ class ProfileDetailsVC: UIViewController {
         return label
     }()
     
-    let addContactBtn: UIButton = {
+    let requestContactBtn: UIButton = {
         let addBtn = UIButton()
         addBtn.translatesAutoresizingMaskIntoConstraints = false
         addBtn.backgroundColor = UIColor.white
@@ -71,11 +71,48 @@ class ProfileDetailsVC: UIViewController {
         return addBtn
     }()
     
-    let addUserLabel: UILabel = {
+    let requestUserLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.masksToBounds = true
         label.text = "Request contact info"
+        return label
+    }()
+    
+    let saveUserToContactsBtn: UIButton = {
+        let saveBtn = UIButton()
+        saveBtn.translatesAutoresizingMaskIntoConstraints = false
+        saveBtn.backgroundColor = UIColor.white
+        saveBtn.layer.masksToBounds = true
+        saveBtn.contentMode = .scaleAspectFill
+        saveBtn.setImage(UIImage(named: "account"), for: .normal)
+        saveBtn.addTarget(self, action: #selector(saveUserToContacts), for: .touchUpInside)
+        return saveBtn
+    }()
+    
+    let saveUserToContactsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.masksToBounds = true
+        label.text = "Save user info to contacts"
+        return label
+    }()
+    
+    let shareProfileInfoBtn: UIButton = {
+        let blockBtn = UIButton()
+        blockBtn.translatesAutoresizingMaskIntoConstraints = false
+        blockBtn.backgroundColor = UIColor.white
+        blockBtn.layer.masksToBounds = true
+        blockBtn.contentMode = .scaleAspectFill
+        blockBtn.setImage(UIImage(named: "contacts"), for: .normal)
+        return blockBtn
+    }()
+    
+    let shareProfileInfoLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.masksToBounds = true
+        label.text = "Share my contact info with user"
         return label
     }()
     
@@ -109,6 +146,10 @@ class ProfileDetailsVC: UIViewController {
         setupProfileViews()
     }
     
+    func saveUserToContacts() {
+        print("Save User to Contacts Clicked")
+    }
+    
     func setupProfileViews() {
         
         view.addSubview(imageContainer)
@@ -117,15 +158,19 @@ class ProfileDetailsVC: UIViewController {
         imageContainer.addSubview(locationLabel)
         view.addSubview(titleLabel)
         view.addSubview(profileDescription)
-        view.addSubview(addUserLabel)
-        view.addSubview(addContactBtn)
+        view.addSubview(requestContactBtn)
+        view.addSubview(requestUserLabel)
+        view.addSubview(saveUserToContactsBtn)
+        view.addSubview(saveUserToContactsLabel)
+        view.addSubview(shareProfileInfoBtn)
+        view.addSubview(shareProfileInfoLabel)
         view.addSubview(blockContactBtn)
         view.addSubview(blockUserLabel)
 
         //x, y, width and height constraints
         imageContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         imageContainer.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        imageContainer.heightAnchor.constraint(equalToConstant: 330).isActive = true
+        imageContainer.heightAnchor.constraint(equalToConstant: 310).isActive = true
         
         imageView.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor).isActive = true
         imageView.topAnchor.constraint(equalTo: imageContainer.topAnchor, constant: 70).isActive = true
@@ -133,7 +178,7 @@ class ProfileDetailsVC: UIViewController {
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         profileName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20).isActive = true
+        profileName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         profileName.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
         locationLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -141,30 +186,53 @@ class ProfileDetailsVC: UIViewController {
         locationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 30).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 10).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         profileDescription.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileDescription.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
         profileDescription.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        addContactBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        addContactBtn.topAnchor.constraint(equalTo: profileDescription.bottomAnchor, constant: 20).isActive = true
-        addContactBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        addContactBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        requestContactBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        requestContactBtn.topAnchor.constraint(equalTo: profileDescription.bottomAnchor, constant: 20).isActive = true
+        requestContactBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        requestContactBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        addUserLabel.leftAnchor.constraint(equalTo: blockContactBtn.rightAnchor, constant: 5).isActive = true
-        addUserLabel.topAnchor.constraint(equalTo: profileDescription.bottomAnchor, constant: 20).isActive = true
-        addUserLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        addUserLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        requestUserLabel.leftAnchor.constraint(equalTo: requestContactBtn.rightAnchor, constant: 5).isActive = true
+        requestUserLabel.topAnchor.constraint(equalTo: profileDescription.bottomAnchor, constant: 20).isActive = true
+        requestUserLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        requestUserLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        saveUserToContactsBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        saveUserToContactsBtn.topAnchor.constraint(equalTo: requestUserLabel.bottomAnchor, constant: 20).isActive = true
+        saveUserToContactsBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        saveUserToContactsBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        saveUserToContactsLabel.leftAnchor.constraint(equalTo: saveUserToContactsBtn.rightAnchor, constant: 5).isActive = true
+        saveUserToContactsLabel.topAnchor.constraint(equalTo: requestUserLabel.bottomAnchor, constant: 20).isActive = true
+        saveUserToContactsLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        saveUserToContactsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        
+        shareProfileInfoBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        shareProfileInfoBtn.topAnchor.constraint(equalTo: saveUserToContactsBtn.bottomAnchor, constant: 20).isActive = true
+        shareProfileInfoBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        shareProfileInfoBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        shareProfileInfoLabel.leftAnchor.constraint(equalTo: shareProfileInfoBtn.rightAnchor, constant: 5).isActive = true
+        shareProfileInfoLabel.topAnchor.constraint(equalTo: saveUserToContactsBtn.bottomAnchor, constant: 20).isActive = true
+        shareProfileInfoLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        shareProfileInfoLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         blockContactBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        blockContactBtn.topAnchor.constraint(equalTo: addContactBtn.bottomAnchor, constant: 20).isActive = true
+        blockContactBtn.topAnchor.constraint(equalTo: shareProfileInfoBtn.bottomAnchor, constant: 20).isActive = true
         blockContactBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
         blockContactBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         blockUserLabel.leftAnchor.constraint(equalTo: blockContactBtn.rightAnchor, constant: 5).isActive = true
-        blockUserLabel.topAnchor.constraint(equalTo: addUserLabel.bottomAnchor, constant: 20).isActive = true
+        blockUserLabel.topAnchor.constraint(equalTo: shareProfileInfoBtn.bottomAnchor, constant: 20).isActive = true
         blockUserLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         blockUserLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }

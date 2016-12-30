@@ -51,12 +51,12 @@ class ProfileDetails: NSObject {
             }
         }
     }
-}
-
-class ProfileBasic: NSObject {
-    var username: String?
-    var name: String?
-    var city: String?
-    var profileImageUrl: String?
-    var gender: String?
+    
+    func fetchUserInfofromServer(uid: String, completion: @escaping ([String: Any]) -> ()){
+        FIRDatabase.database().reference().child("users-details").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userDetailsDictionary = snapshot.value as? [String: Any] {
+                completion(userDetailsDictionary)
+            }
+        }, withCancel: nil)
+    }
 }

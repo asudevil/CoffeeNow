@@ -31,6 +31,7 @@ extension MainViewController {
         let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         showSightingsOnMap(location: loc)
     }
+    
     func clickedSettings (_ button: UIButton) {
         optionsSelector.showOptions()
     }
@@ -51,6 +52,14 @@ extension MainViewController {
         geofire.setLocation(location, forKey: "\(userId)")
     }
     
+    func checkIfUserIsLoggedIn() {
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        } else {
+            fetchUserAndSetupNavBarTitle()
+        }
+    }
     
     func handleNewMessage() {
         let layout = UICollectionViewFlowLayout()
@@ -62,7 +71,7 @@ extension MainViewController {
         view.addSubview(mapView)
         view.addSubview(randomPerson)
         view.addSubview(settingBtn)
-        view.addSubview(locatonSpotter)
+        view.addSubview(locationSpotter)
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
@@ -77,6 +86,11 @@ extension MainViewController {
         randomPerson.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
         randomPerson.widthAnchor.constraint(equalToConstant: 50).isActive = true
         randomPerson.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        locationSpotter.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        locationSpotter.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        locationSpotter.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        locationSpotter.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
 }

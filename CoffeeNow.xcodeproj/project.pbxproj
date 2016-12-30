@@ -35,6 +35,9 @@
 		84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */; };
 		84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E41DC9B05B003A82C2 /* GFQuery.m */; };
 		84EEC1341E0F8468008189DF /* Main+MapView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */; };
+		84EEC13A1E14999A008189DF /* UserProfileCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */; };
+		84EEC13C1E149A93008189DF /* UserProfileDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC13B1E149A93008189DF /* UserProfileDetailsCell.swift */; };
+		84EEC1421E157D69008189DF /* UserHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC1411E157D69008189DF /* UserHeaderCell.swift */; };
 		84F347AF1E00F945006FE365 /* ChangeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F347AE1E00F945006FE365 /* ChangeSettings.swift */; };
 		84F929931DC58667000E8914 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929921DC58667000E8914 /* User.swift */; };
 		84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929941DC5AD74000E8914 /* LoginController+handlers.swift */; };
@@ -85,6 +88,9 @@
 		84B5F0E41DC9B05B003A82C2 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		84B5F0EA1DC9B133003A82C2 /* CoffeeNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoffeeNow-Bridging-Header.h"; sourceTree = "<group>"; };
 		84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Main+MapView+Ext.swift"; sourceTree = "<group>"; };
+		84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCollectionVC.swift; sourceTree = "<group>"; };
+		84EEC13B1E149A93008189DF /* UserProfileDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileDetailsCell.swift; sourceTree = "<group>"; };
+		84EEC1411E157D69008189DF /* UserHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeaderCell.swift; sourceTree = "<group>"; };
 		84F347AE1E00F945006FE365 /* ChangeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeSettings.swift; sourceTree = "<group>"; };
 		84F929921DC58667000E8914 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84F929941DC5AD74000E8914 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
@@ -122,6 +128,8 @@
 				8436D8081DD417C40086D339 /* ChatMsgSummaryCell.swift */,
 				8436D80E1DD83FE70086D339 /* ChatMessageCell.swift */,
 				842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */,
+				84EEC13B1E149A93008189DF /* UserProfileDetailsCell.swift */,
+				84EEC1411E157D69008189DF /* UserHeaderCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 				842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */,
 				84F347AE1E00F945006FE365 /* ChangeSettings.swift */,
 				844FCCB61E05ED3400EAA562 /* MyAccount.swift */,
+				84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -392,6 +401,7 @@
 				84EEC1341E0F8468008189DF /* Main+MapView+Ext.swift in Sources */,
 				84639FCB1DBF407B00438B4C /* MainViewController.swift in Sources */,
 				844C34D01DC189360068735D /* LoginController.swift in Sources */,
+				84EEC13C1E149A93008189DF /* UserProfileDetailsCell.swift in Sources */,
 				840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */,
 				84F929931DC58667000E8914 /* User.swift in Sources */,
 				842FF7D91DFCB1760027C52B /* OptionsSelector.swift in Sources */,
@@ -399,6 +409,8 @@
 				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
 				8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */,
 				84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */,
+				84EEC13A1E14999A008189DF /* UserProfileCollectionVC.swift in Sources */,
+				84EEC1421E157D69008189DF /* UserHeaderCell.swift in Sources */,
 				841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */,
 				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
 				8436D80F1DD83FE70086D339 /* ChatMessageCell.swift in Sources */,
