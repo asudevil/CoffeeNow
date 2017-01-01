@@ -138,7 +138,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         var annotationView: MKAnnotationView?
         if annotation.isKind(of: MKUserLocation.self) {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
-            annotationView?.image = UIImage(named: "profileImage")
+  //          annotationView?.image = UIImage(named: "profileImage")
         } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
             annotationView = deqAnno
             annotationView?.annotation = annotation
@@ -220,14 +220,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func profileDetailsTap() {
-//        let profileDetailsController = ProfileDetailsVC()
-//        profileDetailsController.profileAnno = selectedAnno
-        
         let layout = UICollectionViewFlowLayout()
         
         let profileDetailsController = UserProfileCollectionVC(collectionViewLayout: layout)
         profileDetailsController.profileBasicInfo = selectedAnno
-        
         let selectedProfileID = selectedAnno.userNumber
         profileDetailsController.contactId = selectedProfileID
         profileDetailsController.contactDetailDictionary = selectedUserDetails

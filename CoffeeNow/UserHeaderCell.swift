@@ -10,7 +10,6 @@ import UIKit
 
 class UserHeaderCell: UICollectionViewCell {
     
-    
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +20,6 @@ class UserHeaderCell: UICollectionViewCell {
         imageView.image = UIImage(named: "profileImage")
         return imageView
     }()
-
     let name: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +58,6 @@ class UserHeaderCell: UICollectionViewCell {
         addBtn.addTarget(self, action: #selector(requestUserInfoTapped), for: .touchUpInside)
         return addBtn
     }()
-    
     let requestUserLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +67,6 @@ class UserHeaderCell: UICollectionViewCell {
         label.text = "request"
         return label
     }()
-    
     let saveUserToContactsBtn: UIButton = {
         let saveBtn = UIButton()
         saveBtn.translatesAutoresizingMaskIntoConstraints = false

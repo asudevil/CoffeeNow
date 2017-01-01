@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import Contacts
 
 private let cellId = "Cell"
 private let headerId = "HeaderId"
 
 class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    var store = CNContactStore()
 
     var profileBasicInfo: UserAnnotation?
     var contactId: String?
@@ -32,7 +35,6 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         self.collectionView?.register(UserHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
         setupProfileDetailsArray()
-
     }
     
     func setupProfileDetailsArray() {
@@ -95,9 +97,7 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         let userPicUrl = contactInfoArray[0]
         header.profileImageView.loadImageUsingCacheWithUrlString(urlString: userPicUrl)
         header.name.text = contactInfoArray[1]
-        
- //       header.requestContactBtn.addTarget(self, action: #selector(tappedMessageBtn), for: .touchUpInside)
-        
+                
         return header
     }
 
@@ -117,6 +117,19 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
     
     func saveUserToContacts(sender: UITapGestureRecognizer) {
         print("Save User to Contacts Clicked")
+        
+        let alertTitle = "Save contact"
+        let alertMessage = "Would you like to save this contact to your phone contacts list?"
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
+        let addContactAction = UIAlertAction(title: "Add Contact", style: .default) { (action) in
+            self.addContact(contactInfoToSave: self.contactDetailDictionary)
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(addContactAction)
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     func shareUserTapped(sender: UITapGestureRecognizer) {
@@ -136,5 +149,11 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = userToChatWith
         navigationController?.pushViewController(chatLogController, animated: true)
+    }
+    
+    func alertTaskComplete(alertTitle: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

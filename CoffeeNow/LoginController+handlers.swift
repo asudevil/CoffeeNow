@@ -32,7 +32,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             let imageName = NSUUID().uuidString
             let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
             
-            if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
+            if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.2) {
                 storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                     
                     if error != nil {
@@ -46,7 +46,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                         self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
                         
                         //Detail Info
-                        let userDetails = ["userName": name, "email": email, "imageUrl": profileImageUrl, "firstName": "", "lastName": "", "location": "", "gender": "", "phone":"", "occupation":"", "LinkedIn":"", "details":""]
+                        let userDetails = ["userName": name, "email": email, "imageUrl": profileImageUrl, "firstName": "", "lastName": "", "location": "", "gender": "", "phone":"", "occupation":"", "linkedIn":"", "details":""]
                         self.addUserDetailsIntoDataBaseWithUID(uid: uid, values: userDetails)
                         ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: userDetails)
                     }
@@ -56,7 +56,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 let values = ["name": name, "email": email, "profileImageUrl": ""]
                 self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
                 //Detail Info
-                let userDetails = ["userName": name, "email": email, "imageUrl": "", "firstName": "", "lastName": "", "location": "", "gender": "", "phone":"", "occupation":"", "LinkedIn":"", "details":""]
+                let userDetails = ["userName": name, "email": email, "imageUrl": "", "firstName": "", "lastName": "", "location": "", "gender": "", "phone":"", "occupation":"", "linkedIn":"", "details":""]
                 self.addUserDetailsIntoDataBaseWithUID(uid: uid, values: userDetails)
                 ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: userDetails)
             }

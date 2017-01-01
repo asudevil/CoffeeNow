@@ -63,5 +63,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to show nearby friends</string>
+	<key>NSContactsUsageDescription</key>
+	<string>We need to access your contacts to save new connections.</string>
 </dict>
 </plist>

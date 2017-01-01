@@ -10,7 +10,7 @@
 		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
 		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
-		842011FE1DF94C8B0025307A /* ProfileDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */; };
+		84176C8D1E1703320081E5FB /* Contacts+Ext+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84176C8C1E1703320081E5FB /* Contacts+Ext+Handlers.swift */; };
 		842FF7D91DFCB1760027C52B /* OptionsSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FF7D81DFCB1760027C52B /* OptionsSelector.swift */; };
 		842FF7DB1DFCB6A20027C52B /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */; };
 		842FF7DD1DFCD2EF0027C52B /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */; };
@@ -50,7 +50,7 @@
 		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		841469E51DCB0AD40032DA6F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
-		842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsVC.swift; sourceTree = "<group>"; };
+		84176C8C1E1703320081E5FB /* Contacts+Ext+Handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contacts+Ext+Handlers.swift"; sourceTree = "<group>"; };
 		842FF7D81DFCB1760027C52B /* OptionsSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsSelector.swift; sourceTree = "<group>"; };
 		842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
 		842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
@@ -143,7 +143,6 @@
 				8436D8101DD948D00086D339 /* NewMessageController.swift */,
 				8436D80C1DD83B550086D339 /* MessagesController.swift */,
 				84F929991DC6B944000E8914 /* ChatLogController.swift */,
-				842011FD1DF94C8B0025307A /* ProfileDetailsVC.swift */,
 				842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */,
 				84F347AE1E00F945006FE365 /* ChangeSettings.swift */,
 				844FCCB61E05ED3400EAA562 /* MyAccount.swift */,
@@ -246,6 +245,7 @@
 				84F929941DC5AD74000E8914 /* LoginController+handlers.swift */,
 				842FF7DE1DFD05F00027C52B /* EditProfile+Handlers.swift */,
 				84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */,
+				84176C8C1E1703320081E5FB /* Contacts+Ext+Handlers.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -390,7 +390,6 @@
 			files = (
 				842FF7DF1DFD05F00027C52B /* EditProfile+Handlers.swift in Sources */,
 				84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */,
-				842011FE1DF94C8B0025307A /* ProfileDetailsVC.swift in Sources */,
 				842FF7DB1DFCB6A20027C52B /* OptionsCell.swift in Sources */,
 				8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */,
 				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
@@ -410,6 +409,7 @@
 				8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */,
 				84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */,
 				84EEC13A1E14999A008189DF /* UserProfileCollectionVC.swift in Sources */,
+				84176C8D1E1703320081E5FB /* Contacts+Ext+Handlers.swift in Sources */,
 				84EEC1421E157D69008189DF /* UserHeaderCell.swift in Sources */,
 				841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */,
 				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
