@@ -8,6 +8,7 @@
 
 import UIKit
 import Contacts
+import Firebase
 
 extension UserProfileCollectionVC {
     
@@ -84,14 +85,36 @@ extension UserProfileCollectionVC {
             let alertTitle = "Contact Added!"
             let alertMsg = "Successfully added the contact to your iPhone contacts.  Please check your iphone contacts to verify"
             print(alertTitle)
-            self.alertTaskComplete(alertTitle: alertTitle, alertMessage: alertMsg)
+            self.alertTaskComplete(taskTitle: alertTitle, confirmation: alertMsg)
             
         } catch let err{
             let alertTitle = "ERROR ADDING CONTACT"
             let alertMsg = "Failed to save the contact.  Please check the information and try again"
             print(alertTitle)
-            self.alertTaskComplete(alertTitle: alertTitle, alertMessage: alertMsg)
+            self.alertTaskComplete(taskTitle: alertTitle, confirmation: alertMsg)
             print(alertTitle, err)
+        }
+    }
+    func handleShareRequests(requestType: String, success: @escaping (Bool) -> ()) {
+        
+        guard let toId = contactId else {return }
+        let fromId = FIRAuth.auth()!.currentUser!.uid
+        
+        let refId = fromId + toId
+        
+        let ref = FIRDatabase.database().reference().child("contacts-permissions")
+        let childRef = ref.child(refId)
+        
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let values = [requestType: "Yes", "toID": toId, "fromID": fromId, "timestamp": timestamp] as [String : Any]
+        
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            } else {
+                success(true)
+            }
         }
     }
 }

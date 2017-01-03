@@ -22,7 +22,9 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
     var contactInfoArray = [String]()
     var contactDetailDictionary = [String: Any]()
     var profileLabels = [String]()
-    var allowDetails = true
+    
+    var permissionsDictionary = [String: Any]()
+    private var allowDetails = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,28 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         self.collectionView!.register(UserProfileDetailsCell.self, forCellWithReuseIdentifier: cellId)
         self.collectionView?.register(UserHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
+        setupPermissions()
         setupProfileDetailsArray()
+    }
+    
+    func setupPermissions() {
+        allowDetails = false
+        var blocked = false
+        if let blockUser = permissionsDictionary["blockUser"] as? String {
+            if blockUser == "Yes" {
+                allowDetails = false
+                blocked = true
+            }
+        }
+        if blocked == false {
+            if let permissionGranted = permissionsDictionary["grantPermission"] as? String {
+                if permissionGranted == "Yes" {
+                    allowDetails = true
+                } else {
+                    allowDetails = false
+                }
+            }
+        }
     }
     
     func setupProfileDetailsArray() {
@@ -58,7 +81,7 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
             }
         } else {
             profileLabels.append("Tap request ")
-            contactInfoArray.append("to get request contact info")
+            contactInfoArray.append("to request this user's contact info")
         }
     }
     
@@ -80,10 +103,6 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         cell.title.text = contactInfoArray[indexPath.row + 2]
         
         return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -112,7 +131,19 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
     }
     
     func requestUserInfoTapped(sender: UITapGestureRecognizer) {
-        print("Request Button Clicked")
+        let alertTitle = "Request Info"
+        let alertMessage = "Would you like to request contact information from this user?"
+        let request = "infoRequested"
+        print(alertTitle)
+        alertPerformTask(alertTitle: alertTitle, alertMessage: alertMessage) { (action) in
+            self.handleShareRequests(requestType: request, success: { (successful) in
+                if successful {
+                    self.alertTaskComplete(taskTitle: "Request Sent", confirmation: "Request sent to user")
+                } else {
+                    self.alertTaskComplete(taskTitle: "ERROR", confirmation: "Error processing this request.  Please try again")
+                }
+            })
+        }
     }
     
     func saveUserToContacts(sender: UITapGestureRecognizer) {
@@ -125,6 +156,7 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
         let addContactAction = UIAlertAction(title: "Add Contact", style: .default) { (action) in
             self.addContact(contactInfoToSave: self.contactDetailDictionary)
+            self.alertTaskComplete(taskTitle: "User Saved", confirmation: "This user has been saved to your iPhone contacts")
         }
         alert.addAction(cancelAction)
         alert.addAction(addContactAction)
@@ -133,10 +165,36 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
     }
     
     func shareUserTapped(sender: UITapGestureRecognizer) {
-        print("Share Button Clicked")
+        let alertTitle = "Share My Info"
+        let alertMessage = "Would you like to share your user information with this contact?"
+        let request = "grantPermission"
+        print(alertTitle)
+
+        alertPerformTask(alertTitle: alertTitle, alertMessage: alertMessage) { (action) in
+            self.handleShareRequests(requestType: request, success: { (successful) in
+                if successful {
+                    self.alertTaskComplete(taskTitle: "Permission Granted", confirmation: "This user has been granted access to your contact information")
+                } else {
+                    self.alertTaskComplete(taskTitle: "ERROR", confirmation: "Error processing this request.  Please try again")
+                }
+            })
+        }
     }
     func blockUserTapped(sender: UITapGestureRecognizer) {
-        print("Block Button Clicked")
+        let alertTitle = "Block User"
+        let alertMessage = "Are you sure you want to block this user?"
+        let request = "blockUser"
+        print(alertTitle)
+        
+        alertPerformTask(alertTitle: alertTitle, alertMessage: alertMessage) { (action) in
+            self.handleShareRequests(requestType: request, success: { (successful) in
+                if successful {
+                    self.alertTaskComplete(taskTitle: "User Blocked", confirmation: "This user has been blocked from seeing your contacts and activities")
+                } else {
+                    self.alertTaskComplete(taskTitle: "ERROR", confirmation: "Error processing this request.  Please try again")
+                }
+            })
+        }
     }
     
     func showChatFromProfileView() {
@@ -151,9 +209,20 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
-    func alertTaskComplete(alertTitle: String, alertMessage: String) {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+    func alertTaskComplete(taskTitle: String, confirmation: String) {
+        let alert = UIAlertController(title: taskTitle, message: confirmation, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func alertPerformTask(alertTitle: String, alertMessage: String, completion: @escaping(UIAlertAction) -> ()) {
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
+        let actionToPerform = UIAlertAction(title: alertTitle, style: .default) { (action) in
+            completion(action)
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(actionToPerform)
         self.present(alert, animated: true, completion: nil)
     }
 }

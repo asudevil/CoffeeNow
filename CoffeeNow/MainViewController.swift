@@ -21,7 +21,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     private var loggedInId: String!
     private var selectedAnno: UserAnnotation!
     private var selectedUserDetails = [String: Any]()
-        
+    private var selectedUserpermissions = [String: Any]()
+    
     let mapView: MKMapView = {
        let mp = MKMapView()
         mp.backgroundColor = UIColor.brown
@@ -55,8 +56,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     lazy var locationSpotter: UIImageView = {
         let spot = UIImageView()
         spot.translatesAutoresizingMaskIntoConstraints = false
-        //spot.frame = CGRect(x: self.view.frame.width/2  , y: self.view.frame.height/2, width: 10, height: 10)
-    //    spot.layer.cornerRadius = 5
         spot.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
         spot.layer.masksToBounds = true
         spot.image = UIImage(named: "location")
@@ -71,8 +70,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         return launcher
     }()
     
-    
- 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,12 +120,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             
             let uid = selectedAnnotation.userNumber
             ProfileDetails.sharedInstance.fetchUserInfofromServer(uid: uid, completion: { (userDetailsDictionary) in
-                
                 self.selectedUserDetails = userDetailsDictionary
-                
             })
             
-            
+            ProfileDetails.sharedInstance.fetchUserPermissions(fromId: loggedInId, toId: uid) { (permissionDetails) in
+                self.selectedUserpermissions = permissionDetails
+            }
         }
     }
     
@@ -138,7 +135,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         var annotationView: MKAnnotationView?
         if annotation.isKind(of: MKUserLocation.self) {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
-  //          annotationView?.image = UIImage(named: "profileImage")
         } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
             annotationView = deqAnno
             annotationView?.annotation = annotation
@@ -196,15 +192,23 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if let selectedUser = view.annotation as? UserAnnotation {
             
-            //configuring Apple Map
-                
-                let place = MKPlacemark(coordinate: selectedUser.coordinate)
-                let destination = MKMapItem(placemark: place)
-                destination.name = "User sighting"
-                let regionDistance: CLLocationDistance = 1000
-                let regionSpan = MKCoordinateRegionMakeWithDistance(selectedUser.coordinate, regionDistance, regionDistance)
-                let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving] as [String : Any]
-                MKMapItem.openMaps(with: [destination], launchOptions: options)
+//                let place = MKPlacemark(coordinate: selectedUser.coordinate)
+//                let destination = MKMapItem(placemark: place)
+//                destination.name = "User sighting"
+//                let regionDistance: CLLocationDistance = 1000
+//                let regionSpan = MKCoordinateRegionMakeWithDistance(selectedUser.coordinate, regionDistance, regionDistance)
+//                let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving] as [String : Any]
+//                MKMapItem.openMaps(with: [destination], launchOptions: options)
+//        
+//        
+            let userLoc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+            let contactLoc = CLLocation(latitude: selectedUser.coordinate.latitude, longitude: selectedUser.coordinate.longitude)
+        
+            let searchmeetingPlaceVC = SearchMeetingPlace()
+            searchmeetingPlaceVC.userPin = userLoc
+            searchmeetingPlaceVC.contactPin = contactLoc
+
+            navigationController?.pushViewController(searchmeetingPlaceVC, animated: true)
         }
     }
     
@@ -227,6 +231,9 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let selectedProfileID = selectedAnno.userNumber
         profileDetailsController.contactId = selectedProfileID
         profileDetailsController.contactDetailDictionary = selectedUserDetails
+        
+        profileDetailsController.permissionsDictionary = selectedUserpermissions
+
         
         navigationController?.pushViewController(profileDetailsController, animated: true)
     }

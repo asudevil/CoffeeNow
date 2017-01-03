@@ -265,12 +265,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     func handleSend() {
         let ref = FIRDatabase.database().reference().child("messages")
         let childRef = ref.childByAutoId()
-        //is it there best thing to include the name inside of the message node
         let toId = user!.id!
         let fromId = FIRAuth.auth()!.currentUser!.uid
         let timestamp = Int(Date().timeIntervalSince1970)
         let values = ["text": inputTextField.text!, "toID": toId, "fromID": fromId, "timestamp": timestamp] as [String : Any]
-        //        childRef.updateChildValues(values)
         
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {

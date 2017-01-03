@@ -11,18 +11,6 @@ import Firebase
 
 class ProfileDetails: NSObject {
     
-//    fileprivate var imageUrl: String?
-//    fileprivate var userName: String?
-//    fileprivate var firstName: String?
-//    fileprivate var lastName: String?
-//    fileprivate var location: String?
-//    fileprivate var email: String?
-//    fileprivate var phoneNuber: String?
-//    fileprivate var gender: String?
-//    fileprivate var occupation: String?
-//    fileprivate var linkedInProfile: String?
-//    fileprivate var details: String?
-    
     var allDetailsDictionary: [String: Any]?
     
     static let sharedInstance = ProfileDetails()
@@ -56,6 +44,20 @@ class ProfileDetails: NSObject {
         FIRDatabase.database().reference().child("users-details").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let userDetailsDictionary = snapshot.value as? [String: Any] {
                 completion(userDetailsDictionary)
+            }
+        }, withCancel: nil)
+    }
+    func fetchUserPermissions(fromId: String, toId: String, completion: @escaping ([String: Any]) -> ()){
+        let uid = toId + fromId
+        print("fetching perform for toId + fromId:", uid)
+        FIRDatabase.database().reference().child("contacts-permissions").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userDetailsDictionary = snapshot.value as? [String: Any] {
+                completion(userDetailsDictionary)
+                print("permissions", userDetailsDictionary)
+            } else {
+                print("Default permissions")
+                let userDefaultDetails = ["infoRequested":"No", "grantPermission":"No"]
+                completion(userDefaultDetails)
             }
         }, withCancel: nil)
     }

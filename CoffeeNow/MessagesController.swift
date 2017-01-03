@@ -87,7 +87,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func handleReloadTable() {
-        //this will crash because of background thread, so lets call this on dispatch_async main thread
+        //this will crash because of background thread, so call this on dispatch_async main thread
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
@@ -103,7 +103,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return messages.count
     }
     
@@ -123,7 +122,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             guard let dictionary = snapshot.value as? [String: AnyObject] else {
                 return
             }
-            
             let user = User()
             user.id = chatPartnerId
             user.setValuesForKeys(dictionary)
@@ -141,7 +139,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         }
         let timestamp = Int(NSDate.timeIntervalSinceReferenceDate)
         let values = ["text": sendText, "name": name, "toID": toID, "fromID": fromID, "timestamp": timestamp] as [String : Any]
-        //        childRef.updateChildValues(values)
         
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {

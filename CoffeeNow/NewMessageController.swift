@@ -12,14 +12,12 @@ import Firebase
 class NewMessageController: UITableViewController {
     
     let cellId = "cellId"
-    
     var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
         fetchUser()
@@ -63,7 +61,6 @@ class NewMessageController: UITableViewController {
         if let profileImageUrl = user.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
-        
         return cell
     }
     
