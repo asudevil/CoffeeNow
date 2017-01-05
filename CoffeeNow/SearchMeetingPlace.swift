@@ -34,6 +34,17 @@ class SearchMeetingPlace: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userPin.coordinate.latitude
+        
+ //       let firstPin = CLLocation(latitude: 37.3580262, longitude: -122.0166397)
+ //       let secondPin = CLLocation(latitude: 37.3253554, longitude: -122.0141182)
+        print("user latitude",userPin.coordinate.latitude)
+        print("user longitude",userPin.coordinate.longitude)
+
+        print("contactPin latitude", contactPin.coordinate.latitude)
+        print("contactPin longitude",contactPin.coordinate.longitude)
+
+        
         setupMapViews()
 
         // add users to map
@@ -53,7 +64,6 @@ class SearchMeetingPlace: UIViewController {
         view.backgroundColor = .white
         
         performSearch()
-        
 
     }
     

@@ -22,9 +22,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     var messages = [Message]()
     
     func observeMessages() {
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-            return
-        }
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         
         let userMessagesRef = FIRDatabase.database().reference().child("user-messages").child(uid)
         userMessagesRef.observe(.childAdded, with: { (snapshot) in

@@ -200,8 +200,14 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //                let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving] as [String : Any]
 //                MKMapItem.openMaps(with: [destination], launchOptions: options)
 //        
-//        
-            let userLoc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        
+            let lat = mapView.userLocation.coordinate.latitude
+            let lon = mapView.userLocation.coordinate.longitude
+            
+            let userLoc = CLLocation(latitude: lat, longitude: lon)
+            
+            
+        //    let userLoc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
             let contactLoc = CLLocation(latitude: selectedUser.coordinate.latitude, longitude: selectedUser.coordinate.longitude)
         
             let searchmeetingPlaceVC = SearchMeetingPlace()
