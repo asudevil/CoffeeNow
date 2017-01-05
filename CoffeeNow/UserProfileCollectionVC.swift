@@ -134,7 +134,6 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         let alertTitle = "Request Info"
         let alertMessage = "Would you like to request contact information from this user?"
         let request = "infoRequested"
-        print(alertTitle)
         alertPerformTask(alertTitle: alertTitle, alertMessage: alertMessage) { (action) in
             self.handleShareRequests(requestType: request, success: { (successful) in
                 if successful {
@@ -147,7 +146,6 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
     }
     
     func saveUserToContacts(sender: UITapGestureRecognizer) {
-        print("Save User to Contacts Clicked")
         
         let alertTitle = "Save contact"
         let alertMessage = "Would you like to save this contact to your phone contacts list?"
@@ -168,7 +166,6 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         let alertTitle = "Share My Info"
         let alertMessage = "Would you like to share your user information with this contact?"
         let request = "grantPermission"
-        print(alertTitle)
 
         alertPerformTask(alertTitle: alertTitle, alertMessage: alertMessage) { (action) in
             self.handleShareRequests(requestType: request, success: { (successful) in
@@ -184,7 +181,6 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
         let alertTitle = "Block User"
         let alertMessage = "Are you sure you want to block this user?"
         let request = "blockUser"
-        print(alertTitle)
         
         alertPerformTask(alertTitle: alertTitle, alertMessage: alertMessage) { (action) in
             self.handleShareRequests(requestType: request, success: { (successful) in

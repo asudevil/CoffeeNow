@@ -49,11 +49,9 @@ class ProfileDetails: NSObject {
     }
     func fetchUserPermissions(fromId: String, toId: String, completion: @escaping ([String: Any]) -> ()){
         let uid = toId + fromId
-        print("fetching perform for toId + fromId:", uid)
         FIRDatabase.database().reference().child("contacts-permissions").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let userDetailsDictionary = snapshot.value as? [String: Any] {
                 completion(userDetailsDictionary)
-                print("permissions", userDetailsDictionary)
             } else {
                 print("Default permissions")
                 let userDefaultDetails = ["infoRequested":"No", "grantPermission":"No"]

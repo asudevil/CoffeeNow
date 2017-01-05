@@ -30,7 +30,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         return mp
     }()
  
-    let randomPerson: UIButton = {
+    let pinMeHereBtn: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .green
@@ -83,7 +83,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         let image = UIImage(named: "list-icon")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
-        randomPerson.addTarget(self, action: #selector(spotUserAtLocation), for: .touchUpInside)
+        pinMeHereBtn.addTarget(self, action: #selector(spotUserAtLocation), for: .touchUpInside)
         settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
         setupViewsAndButtons()
         loadProfileDetails()
@@ -147,9 +147,9 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if let annotationView = annotationView, let anno = annotation as? UserAnnotation {
             annotationView.canShowCallout = true
             
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.layer.cornerRadius = 25
+            imageView.layer.cornerRadius = 15
             imageView.layer.masksToBounds = true
             imageView.contentMode = .scaleAspectFill
             
@@ -192,6 +192,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if let selectedUser = view.annotation as? UserAnnotation {
             
+            //Give you directions to location
 //                let place = MKPlacemark(coordinate: selectedUser.coordinate)
 //                let destination = MKMapItem(placemark: place)
 //                destination.name = "User sighting"
@@ -201,6 +202,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 //                MKMapItem.openMaps(with: [destination], launchOptions: options)
 //        
         
+            //Prepare locations to search for meeting place
+            
             let lat = mapView.userLocation.coordinate.latitude
             let lon = mapView.userLocation.coordinate.longitude
             

@@ -55,6 +55,11 @@ class SearchMeetingPlace: UIViewController {
         mapView.addAnnotation(user1)
         mapView.addAnnotation(user2)
         
+        if let userAnno = mapView.annotations.first {
+
+        }
+        
+        
         // set map view to show both users
         mapView.showAnnotations([user1, user2], animated: true)
         view.backgroundColor = .white
@@ -87,7 +92,6 @@ class SearchMeetingPlace: UIViewController {
             }
             // add coffee shops to map
             for place in response.mapItems {
-                print("\(place.name)")
                 if let location = place.name {
                     self.meetingLocSelector.meetingLocName.append(location)
                 }

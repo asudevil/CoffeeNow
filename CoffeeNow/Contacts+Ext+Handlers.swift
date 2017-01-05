@@ -30,7 +30,6 @@ extension UserProfileCollectionVC {
         }
     }
 
-
     func saveContact(contactInfo: [String: Any]) {
         
         let contact = CNMutableContact()
@@ -84,13 +83,11 @@ extension UserProfileCollectionVC {
             try store.execute(request)
             let alertTitle = "Contact Added!"
             let alertMsg = "Successfully added the contact to your iPhone contacts.  Please check your iphone contacts to verify"
-            print(alertTitle)
             self.alertTaskComplete(taskTitle: alertTitle, confirmation: alertMsg)
             
         } catch let err{
             let alertTitle = "ERROR ADDING CONTACT"
             let alertMsg = "Failed to save the contact.  Please check the information and try again"
-            print(alertTitle)
             self.alertTaskComplete(taskTitle: alertTitle, confirmation: alertMsg)
             print(alertTitle, err)
         }

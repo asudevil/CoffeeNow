@@ -90,9 +90,8 @@ class MeetingLocResults: NSObject, UICollectionViewDataSource, UICollectionViewD
             }
             
         }) { (completed: Bool) in
-            
-            print("Show selected Store \(selectedOption)")            
-            
+
+            print("Show selected Store \(selectedOption)")
         }
     }
 }

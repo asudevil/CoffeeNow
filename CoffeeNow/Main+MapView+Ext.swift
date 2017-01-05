@@ -69,28 +69,28 @@ extension MainViewController {
     
     func setupViewsAndButtons() {
         view.addSubview(mapView)
-        view.addSubview(randomPerson)
+        view.addSubview(pinMeHereBtn)
         view.addSubview(settingBtn)
         view.addSubview(locationSpotter)
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60).isActive = true
         
         settingBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35).isActive = true
-        settingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
-        settingBtn.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        settingBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        settingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        settingBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        settingBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        randomPerson.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35).isActive = true
-        randomPerson.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
-        randomPerson.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        randomPerson.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        pinMeHereBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35).isActive = true
+        pinMeHereBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        pinMeHereBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        pinMeHereBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         locationSpotter.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         locationSpotter.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        locationSpotter.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        locationSpotter.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        locationSpotter.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        locationSpotter.widthAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
 }

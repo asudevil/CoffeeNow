@@ -243,8 +243,6 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: keyboardDuration!) {
             self.view.layoutIfNeeded()
         }
-
-        
     }
     
     func getUserDetails() {
@@ -270,7 +268,6 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         navigationController?.popViewController(animated: true)
     }
     func saveButton() {
-        print("Save Button clicked!!")
         updatedProfileText(fieldToUpdate: "imageUrl", newInfo: self.profileImageUrl)
         updatedProfileText(fieldToUpdate: "userName", newInfo: usernameTextField.text)
         updatedProfileText(fieldToUpdate: "firstName", newInfo: firstNameTextField.text)

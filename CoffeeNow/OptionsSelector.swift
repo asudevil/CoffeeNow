@@ -90,26 +90,19 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
             }
             
         }) { (completed: Bool) in
-            
-            print("Show selected Options view")
-            
+                        
             switch selectedOption {
             case 0:
-                print("Changing Settings")
                 self.mainViewController?.changeSettingsTapped()
             case 1:
-                print("Editing Profile")
                 self.mainViewController?.editProfileTapped()
             case 2:
-                print("My Account")
                 self.mainViewController?.myAccountTapped()
             case 3:
-                print("Loging out")
                 self.mainViewController?.handleLogout()
             default:
                 print("Do nothing")
             }
-
         }
     }
 }

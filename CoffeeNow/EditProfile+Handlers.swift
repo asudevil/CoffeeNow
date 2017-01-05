@@ -13,7 +13,6 @@ extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationController
 
     func selectProfileImageView() {
         
-        print("Selecting an image")
         let picker = UIImagePickerController()
         picker.delegate = self
         
@@ -38,7 +37,6 @@ extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationController
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
-        print("Canceled Picker")
         dismiss(animated: true, completion: nil)
     }
 
