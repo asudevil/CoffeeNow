@@ -35,6 +35,8 @@
 		84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E01DC9B05B003A82C2 /* GFGeoHash.m */; };
 		84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E21DC9B05B003A82C2 /* GFGeoHashQuery.m */; };
 		84B5F0E91DC9B05B003A82C2 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F0E41DC9B05B003A82C2 /* GFQuery.m */; };
+		84B8F2441E1DF32A00DCD5DC /* MeetingLocResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2431E1DF32A00DCD5DC /* MeetingLocResults.swift */; };
+		84B8F2461E1DF40E00DCD5DC /* MeetingLocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2451E1DF40E00DCD5DC /* MeetingLocCell.swift */; };
 		84EEC1341E0F8468008189DF /* Main+MapView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */; };
 		84EEC13A1E14999A008189DF /* UserProfileCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */; };
 		84EEC13C1E149A93008189DF /* UserProfileDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEC13B1E149A93008189DF /* UserProfileDetailsCell.swift */; };
@@ -89,6 +91,8 @@
 		84B5F0E31DC9B05B003A82C2 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
 		84B5F0E41DC9B05B003A82C2 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		84B5F0EA1DC9B133003A82C2 /* CoffeeNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoffeeNow-Bridging-Header.h"; sourceTree = "<group>"; };
+		84B8F2431E1DF32A00DCD5DC /* MeetingLocResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingLocResults.swift; sourceTree = "<group>"; };
+		84B8F2451E1DF40E00DCD5DC /* MeetingLocCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingLocCell.swift; sourceTree = "<group>"; };
 		84EEC1331E0F8468008189DF /* Main+MapView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Main+MapView+Ext.swift"; sourceTree = "<group>"; };
 		84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCollectionVC.swift; sourceTree = "<group>"; };
 		84EEC13B1E149A93008189DF /* UserProfileDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileDetailsCell.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				842FF7DA1DFCB6A20027C52B /* OptionsCell.swift */,
 				84EEC13B1E149A93008189DF /* UserProfileDetailsCell.swift */,
 				84EEC1411E157D69008189DF /* UserHeaderCell.swift */,
+				84B8F2451E1DF40E00DCD5DC /* MeetingLocCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				844FCCB61E05ED3400EAA562 /* MyAccount.swift */,
 				84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */,
 				8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */,
+				84B8F2431E1DF32A00DCD5DC /* MeetingLocResults.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 				8436D80D1DD83B550086D339 /* MessagesController.swift in Sources */,
 				84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */,
 				84B5F0E81DC9B05B003A82C2 /* GFGeoHashQuery.m in Sources */,
+				84B8F2441E1DF32A00DCD5DC /* MeetingLocResults.swift in Sources */,
 				84B5F0E61DC9B05B003A82C2 /* GFBase32Utils.m in Sources */,
 				842FF7DD1DFCD2EF0027C52B /* EditProfileVC.swift in Sources */,
 				844FCCB71E05ED3400EAA562 /* MyAccount.swift in Sources */,
@@ -416,6 +423,7 @@
 				84EEC1421E157D69008189DF /* UserHeaderCell.swift in Sources */,
 				8400718F1E1B7EAB00F9E395 /* SearchMeetingPlace.swift in Sources */,
 				841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */,
+				84B8F2461E1DF40E00DCD5DC /* MeetingLocCell.swift in Sources */,
 				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
 				8436D80F1DD83FE70086D339 /* ChatMessageCell.swift in Sources */,
 				84B5F0E51DC9B05B003A82C2 /* GeoFire.m in Sources */,

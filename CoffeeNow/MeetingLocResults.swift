@@ -1,25 +1,25 @@
 //
-//  OptionsSelector.swift
+//  MeetingLocResults.swift
 //  CoffeeNow
 //
-//  Created by admin on 12/10/16.
-//  Copyright © 2016 CodeWithFelix. All rights reserved.
+//  Created by admin on 1/4/17.
+//  Copyright © 2017 CodeWithFelix. All rights reserved.
 //
 
 import UIKit
 
-class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    let settingOptions = ["Change Settings","Edit Profile","My Account","Logout"]
-    let settingsImages = ["settings", "editProfile", "myAccount", "logout"]
+class MeetingLocResults: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    var meetingLocName = [String]()
+    var meetingLocImages = ["coffeeLogo"]
     let cellId = "cellId"
     let cellHeight: CGFloat = 55
     
     var selectedProduct: String!
     
-    var mainViewController: MainViewController?
+    var meetingPlace: SearchMeetingPlace?
     
     let blackView = UIView()
-
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -32,19 +32,19 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(OptionsCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(MeetingLocCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settingOptions.count
+        return meetingLocName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! OptionsCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MeetingLocCell
         
-        cell.nameLabel.text = settingOptions[indexPath.item]
-        cell.selectedImage = settingsImages[indexPath.item]
+        cell.nameLabel.text = meetingLocName[indexPath.item]
+        cell.meetingLocImage = meetingLocImages[0]
         return cell
     }
     
@@ -54,19 +54,19 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.5
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         handleDismiss(indexPath.item)
     }
     
-    func showOptions () {
+    func showLocations () {
         
         if let window = UIApplication.shared.keyWindow {
             
-            let height: CGFloat = CGFloat(settingOptions.count) * cellHeight
+            let height: CGFloat = CGFloat(meetingLocName.count) * cellHeight
             let y = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
             collectionView.backgroundColor = UIColor.gray
-            blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            blackView.backgroundColor = UIColor(white: 0, alpha: 0.3)
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
             blackView.frame = window.frame
             blackView.alpha = 0
@@ -91,26 +91,8 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
             
         }) { (completed: Bool) in
             
-            print("Show selected Options view")
+            print("Show selected Store \(selectedOption)")            
             
-            switch selectedOption {
-            case 0:
-                print("Changing Settings")
-                self.mainViewController?.changeSettingsTapped()
-            case 1:
-                print("Editing Profile")
-                self.mainViewController?.editProfileTapped()
-            case 2:
-                print("My Account")
-                self.mainViewController?.myAccountTapped()
-            case 3:
-                print("Loging out")
-                self.mainViewController?.handleLogout()
-            default:
-                print("Do nothing")
-            }
-
         }
     }
 }
-

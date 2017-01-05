@@ -21,43 +21,39 @@ class SearchMeetingPlace: UIViewController {
         mp.translatesAutoresizingMaskIntoConstraints = false
         return mp
     }()
-    let getLocationBtn: UIButton = {
+    let locationListBtn: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = .red
         btn.titleLabel?.text = "Show Locations"
         btn.setTitleColor(.white, for: .normal)
-        btn.addTarget(self, action: #selector(performSearch), for: .touchUpInside)
+        btn.setImage(UIImage(named: "list-icon"), for: .normal)
+        btn.layer.masksToBounds = true
+        btn.contentMode = .scaleAspectFill
+        btn.addTarget(self, action: #selector(showMeetingLocationTable), for: .touchUpInside)
        return btn
+    }()
+    
+    lazy var meetingLocSelector: MeetingLocResults = {
+        let launcher = MeetingLocResults()
+        launcher.meetingPlace = self
+        return launcher
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        userPin.coordinate.latitude
-        
- //       let firstPin = CLLocation(latitude: 37.3580262, longitude: -122.0166397)
- //       let secondPin = CLLocation(latitude: 37.3253554, longitude: -122.0141182)
-        print("user latitude",userPin.coordinate.latitude)
-        print("user longitude",userPin.coordinate.longitude)
-
-        print("contactPin latitude", contactPin.coordinate.latitude)
-        print("contactPin longitude",contactPin.coordinate.longitude)
-
         
         setupMapViews()
 
         // add users to map
         let user1 = MKPointAnnotation()
         user1.coordinate = userPin.coordinate
-        user1.title = "user1"
+        user1.title = "Me"
         let user2 = MKPointAnnotation()
         user2.coordinate = contactPin.coordinate
-        user2.title = "user2"
+        user2.title = "New Contact"
         
         mapView.addAnnotation(user1)
         mapView.addAnnotation(user2)
-        
         
         // set map view to show both users
         mapView.showAnnotations([user1, user2], animated: true)
@@ -69,6 +65,7 @@ class SearchMeetingPlace: UIViewController {
     
     func performSearch() {
         // use MKLocalSearch API to find coffee places
+        
         let midpointLat = (userPin.coordinate.latitude + contactPin.coordinate.latitude)/2
         let midpointLon = (userPin.coordinate.longitude + contactPin.coordinate.longitude)/2
         let midpointCoord = CLLocationCoordinate2D(latitude: midpointLat, longitude: midpointLon)
@@ -91,6 +88,10 @@ class SearchMeetingPlace: UIViewController {
             // add coffee shops to map
             for place in response.mapItems {
                 print("\(place.name)")
+                if let location = place.name {
+                    self.meetingLocSelector.meetingLocName.append(location)
+                }
+                
                 let placeAnno = MKPointAnnotation()
                 placeAnno.coordinate = place.placemark.coordinate
                 placeAnno.title = place.name
@@ -98,23 +99,23 @@ class SearchMeetingPlace: UIViewController {
             }
         }
     }
+    
+    func showMeetingLocationTable() {
+        meetingLocSelector.showLocations()
+    }
     func setupMapViews() {
         
-        view.addSubview(getLocationBtn)
         view.addSubview(mapView)
+        view.addSubview(locationListBtn)
         
         mapView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         mapView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
         
-        getLocationBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        getLocationBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        getLocationBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        getLocationBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
-
+        locationListBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        locationListBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        locationListBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        locationListBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
-    
-
-
 }
