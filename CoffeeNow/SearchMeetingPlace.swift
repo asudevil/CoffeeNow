@@ -55,11 +55,6 @@ class SearchMeetingPlace: UIViewController {
         mapView.addAnnotation(user1)
         mapView.addAnnotation(user2)
         
-        if let userAnno = mapView.annotations.first {
-
-        }
-        
-        
         // set map view to show both users
         mapView.showAnnotations([user1, user2], animated: true)
         view.backgroundColor = .white
@@ -123,3 +118,4 @@ class SearchMeetingPlace: UIViewController {
         locationListBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
 }
+

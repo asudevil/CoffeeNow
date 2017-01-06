@@ -14,7 +14,7 @@ class UserHeaderCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.gray
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 50
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: "profileImage")
