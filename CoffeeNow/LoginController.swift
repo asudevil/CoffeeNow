@@ -243,7 +243,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDe
     }
     
     func loginAlert() {
-        let alert = UIAlertController(title: "Error Logging In", message: "Username or Password is incorrect.  Please check and try again", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Error Logging In", message: "Username or password is incorrect. Please check and try again.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

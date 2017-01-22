@@ -288,7 +288,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             
             if let dictionary = snapshot.value as? [String: Any] {
                 self.loggedInUserName = dictionary["name"] as? String
-                self.navigationItem.title = self.loggedInUserName
+                self.navigationItem.title = "Map"
             }
         }, withCancel: nil)
     }

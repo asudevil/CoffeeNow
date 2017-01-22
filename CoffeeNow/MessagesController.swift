@@ -27,7 +27,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     override init(collectionViewLayout: UICollectionViewLayout) {
         super.init(collectionViewLayout: collectionViewLayout)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,7 +36,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = user.name
+        navigationItem.title = "Messages"
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ChatMsgSummaryCell.self, forCellWithReuseIdentifier: cellId)
         

@@ -9,8 +9,8 @@
 import UIKit
 
 class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    let settingOptions = ["Change Settings","Edit Profile","My Account","Logout"]
-    let settingsImages = ["settings", "editProfile", "myAccount", "logout"]
+    let settingOptions = ["Contacts","Change Settings","Edit Profile","My Account","Logout"]
+    let settingsImages = ["contacts", "settings", "editProfile", "myAccount", "logout"]
     let cellId = "cellId"
     let cellHeight: CGFloat = 55
     
@@ -93,12 +93,14 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
                         
             switch selectedOption {
             case 0:
-                self.mainViewController?.changeSettingsTapped()
+                self.mainViewController?.contactsTapped()
             case 1:
-                self.mainViewController?.editProfileTapped()
+                self.mainViewController?.changeSettingsTapped()
             case 2:
-                self.mainViewController?.myAccountTapped()
+                self.mainViewController?.editProfileTapped()
             case 3:
+                self.mainViewController?.myAccountTapped()
+            case 4:
                 self.mainViewController?.handleLogout()
             default:
                 print("Do nothing")

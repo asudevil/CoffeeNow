@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3005BF281E33D8C30048662A /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3005BF271E33D8C30048662A /* ContactsController.swift */; };
 		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
 		8400718F1E1B7EAB00F9E395 /* SearchMeetingPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */; };
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3005BF271E33D8C30048662A /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMeetingPlace.swift; sourceTree = "<group>"; };
 		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				842FF7D81DFCB1760027C52B /* OptionsSelector.swift */,
 				8436D8101DD948D00086D339 /* NewMessageController.swift */,
 				8436D80C1DD83B550086D339 /* MessagesController.swift */,
+				3005BF271E33D8C30048662A /* ContactsController.swift */,
 				84F929991DC6B944000E8914 /* ChatLogController.swift */,
 				842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */,
 				84F347AE1E00F945006FE365 /* ChangeSettings.swift */,
@@ -418,6 +421,7 @@
 				84F929981DC5D538000E8914 /* Extensions.swift in Sources */,
 				8436D8091DD417C40086D339 /* ChatMsgSummaryCell.swift in Sources */,
 				84B5F0E71DC9B05B003A82C2 /* GFGeoHash.m in Sources */,
+				3005BF281E33D8C30048662A /* ContactsController.swift in Sources */,
 				84EEC13A1E14999A008189DF /* UserProfileCollectionVC.swift in Sources */,
 				84176C8D1E1703320081E5FB /* Contacts+Ext+Handlers.swift in Sources */,
 				84EEC1421E157D69008189DF /* UserHeaderCell.swift in Sources */,
