@@ -20,7 +20,7 @@ class ContactsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleBack))
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
@@ -79,8 +79,8 @@ class ContactsController: UITableViewController {
         }, withCancel: nil)
     }
     
-    func handleCancel() {
-        navigationController?.popViewController(animated: true)
+    func handleBack() {
+        navigationController?.pop(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,9 +108,25 @@ class ContactsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismiss(animated: true) {
-            print("Dismiss completed")
             let user = self.users[indexPath.row]
             self.messagesController?.showChatControllerForUser(user)
+            
+            //let layout = UICollectionViewFlowLayout()
+            //let profileDetailsController = UserProfileCollectionVC(collectionViewLayout: layout)
+            
+            /*
+            let profileDetailsController = UserProfileCollectionVC()
+
+            profileDetailsController.profileBasicInfo = selectedAnno
+            let selectedProfileID = selectedAnno.userNumber
+            profileDetailsController.contactId = selectedProfileID
+            profileDetailsController.contactDetailDictionary = selectedUserDetails
+            
+            profileDetailsController.permissionsDictionary = selectedUserpermissions
+
+            
+            self.navigationController?.pushViewController(profileDetailsController, animated: true)
+            */
         }
     }
 }

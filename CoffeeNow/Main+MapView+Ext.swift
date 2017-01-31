@@ -43,6 +43,10 @@ extension MainViewController {
         let contactsVC = ContactsController()
         navigationController?.pushViewController(contactsVC, animated: true)
     }
+    func contactRequestsTapped() {
+        let contactRequestsVC = ContactRequestsVC()
+        navigationController?.pushViewController(contactRequestsVC, animated: true)
+    }
     func changeSettingsTapped() {
         let changeSettingsVC = ChangeSettings()
         navigationController?.pushViewController(changeSettingsVC, animated: true)

@@ -113,5 +113,8 @@ extension UserProfileCollectionVC {
                 success(true)
             }
         }
+        
+        let userRequestsRef = FIRDatabase.database().reference().child("contact-requests/\(toId)/\(fromId)")
+        userRequestsRef.setValue(["timestamp": timestamp])
     }
 }

@@ -265,7 +265,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     }
 
     func cancelButton() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.pop(animated: true)
     }
     func saveButton() {
         updatedProfileText(fieldToUpdate: "imageUrl", newInfo: self.profileImageUrl)
@@ -279,7 +279,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         updatedProfileText(fieldToUpdate: "occupation", newInfo: occupationTextField.text)
         updatedProfileText(fieldToUpdate: "linkedIn", newInfo: linkedInTextField.text)
         updatedProfileText(fieldToUpdate: "details", newInfo: profileInfoTextField.text)
-        navigationController?.popViewController(animated: true)
+        navigationController?.pop(animated: true)
     }
     
     func updatedProfileText(fieldToUpdate: String, newInfo: String?) {
