@@ -13,12 +13,14 @@ class ContactRequestsVC: UITableViewController {
         
     let cellId = "cellId"
     var loggedInId: String!
-    var users = [User]()
-    var requestTimestamp: Double!
-    var requestTimestampDate: Date!
+    var contactRequests = [Request]()
     var contactRequestsRef: FIRDatabaseReference!
     let usersRef = FIRDatabase.database().reference().child("users")
     let dateFormatter = DateFormatter()
+    
+    let business = "Sports Page"
+    let city = "Mountain View"
+    let geoSectionsCount = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +45,19 @@ class ContactRequestsVC: UITableViewController {
         // check for contact requests
         contactRequestsRef.observe(.childAdded, with: { snapshot in
 
+            let request = Request()
+            
             if let requestDict = snapshot.value as? [String: AnyObject] {
-                self.requestTimestamp = requestDict["timestamp"] as? Double ?? 0
-                self.requestTimestampDate = Date(timeIntervalSince1970: self.requestTimestamp)
+                let timeStamp = requestDict["timestamp"] as? Double ?? 0
+                request.timeStampDate = Date(timeIntervalSince1970: timeStamp)
             }
             
             // get user info for contact requests
             self.usersRef.child(snapshot.key).observe(.value, with: { (snapshot) in
                 
                 if let userDict = snapshot.value as? [String: AnyObject] {
-                    let user = User()
-                    user.setValuesForKeys(userDict)
-                    self.users.append(user)
+                    request.setValuesForKeys(userDict)
+                    self.contactRequests.append(request)
                     
                     //this will crash because of background thread, so lets use dispatch_async to fix
                     DispatchQueue.main.async {
@@ -73,28 +76,30 @@ class ContactRequestsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return contactRequests.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return geoSectionsCount
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "\"Sports Page\" in Mountain View"
+        return "\"\(business)\" in \(city)"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RequestCell
         
-        let user = users[indexPath.row]
-        cell.textLabel?.text = user.name
+        let request = contactRequests[indexPath.row]
+        cell.textLabel?.text = request.name
         
-        cell.detailTextLabel?.text = dateFormatter.string(from: requestTimestampDate)
+        cell.detailTextLabel?.text = dateFormatter.string(from: request.timeStampDate!)
         cell.declineButton.addTarget(self, action: #selector(declineRequest), for: .touchUpInside)
+        cell.declineButton.tag = indexPath.row
         cell.acceptButton.addTarget(self, action: #selector(acceptRequest), for: .touchUpInside)
+        cell.acceptButton.tag = indexPath.row
         
-        if let profileImageUrl = user.profileImageUrl {
+        if let profileImageUrl = request.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
         return cell
@@ -104,11 +109,38 @@ class ContactRequestsVC: UITableViewController {
         return 62
     }
     
-    func acceptRequest() {
-        print("accepted")
+    func acceptRequest(sender: UIButton) {
+        let row = sender.tag
+        print("accepted from \(row)")
+        
+        /*
+        guard let toId = contactId else {return }
+        let fromId = FIRAuth.auth()!.currentUser!.uid
+        
+        let refId = fromId + toId
+        
+        let ref = FIRDatabase.database().reference().child("contacts-permissions")
+        let childRef = ref.child(refId)
+        
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let values = [requestType: "Yes", "toID": toId, "fromID": fromId, "timestamp": timestamp] as [String : Any]
+        
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            } else {
+                success(true)
+            }
+        }
+        
+        let userRequestsRef = FIRDatabase.database().reference().child("contact-requests/\(toId)/\(fromId)")
+        userRequestsRef.setValue(["timestamp": timestamp])
+        */
     }
     
-    func declineRequest() {
-        print("declined")
+    func declineRequest(sender: UIButton) {
+        let row = sender.tag
+        print("declined from \(row)")
     }
 }

@@ -10,6 +10,7 @@
 		30000EC71E3EAA9D00D4C91E /* ContactRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30000EC61E3EAA9D00D4C91E /* ContactRequestsVC.swift */; };
 		30000EC91E3F51B500D4C91E /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30000EC81E3F51B500D4C91E /* RequestCell.swift */; };
 		3005BF281E33D8C30048662A /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3005BF271E33D8C30048662A /* ContactsController.swift */; };
+		309FA4FC1E44256900DA749C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309FA4FB1E44256900DA749C /* Request.swift */; };
 		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
 		8400718F1E1B7EAB00F9E395 /* SearchMeetingPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */; };
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
@@ -55,6 +56,7 @@
 		30000EC61E3EAA9D00D4C91E /* ContactRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRequestsVC.swift; sourceTree = "<group>"; };
 		30000EC81E3F51B500D4C91E /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		3005BF271E33D8C30048662A /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
+		309FA4FB1E44256900DA749C /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMeetingPlace.swift; sourceTree = "<group>"; };
 		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
@@ -161,9 +163,9 @@
 				842FF7DC1DFCD2EF0027C52B /* EditProfileVC.swift */,
 				84F347AE1E00F945006FE365 /* ChangeSettings.swift */,
 				844FCCB61E05ED3400EAA562 /* MyAccount.swift */,
-				84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */,
 				8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */,
 				84B8F2431E1DF32A00DCD5DC /* MeetingLocResults.swift */,
+				84EEC1391E14999A008189DF /* UserProfileCollectionVC.swift */,
 				30000EC61E3EAA9D00D4C91E /* ContactRequestsVC.swift */,
 			);
 			name = Controller;
@@ -252,6 +254,7 @@
 				841469E51DCB0AD40032DA6F /* UserAnnotation.swift */,
 				8436D8061DD1BE740086D339 /* Message.swift */,
 				842FF7E01DFE09900027C52B /* ProfileDetails.swift */,
+				309FA4FB1E44256900DA749C /* Request.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				8436D8071DD1BE740086D339 /* Message.swift in Sources */,
 				8436D80F1DD83FE70086D339 /* ChatMessageCell.swift in Sources */,
 				84B5F0E51DC9B05B003A82C2 /* GeoFire.m in Sources */,
+				309FA4FC1E44256900DA749C /* Request.swift in Sources */,
 				84F347AF1E00F945006FE365 /* ChangeSettings.swift in Sources */,
 				842FF7E11DFE09900027C52B /* ProfileDetails.swift in Sources */,
 				30000EC91E3F51B500D4C91E /* RequestCell.swift in Sources */,
