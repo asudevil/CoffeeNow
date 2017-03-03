@@ -24,6 +24,7 @@ class UserProfileCollectionVC: UICollectionViewController, UICollectionViewDeleg
     var profileLabels = [String]()
     
     var permissionsDictionary = [String: Any]()
+    var contactLocation: CLLocationCoordinate2D!
     private var allowDetails = false
     
     override func viewDidLoad() {

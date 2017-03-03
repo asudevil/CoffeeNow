@@ -115,6 +115,38 @@ extension UserProfileCollectionVC {
         }
         
         let userRequestsRef = FIRDatabase.database().reference().child("contact-requests/\(toId)/\(fromId)")
-        userRequestsRef.setValue(["timestamp": timestamp])
+        userRequestsRef.child("timestamp").setValue(timestamp)
+        userRequestsRef.child("requestAddress").setValue("Unknown Location")
+        
+        let location = CLLocation(latitude: contactLocation.latitude, longitude: contactLocation.longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            guard let placemarks = placemarks else {
+                print("Reverse geocoder returned 0 placemarks")
+                return
+            }
+            
+            if error != nil {
+                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                return
+            }
+            
+            if placemarks.count > 0 {
+                let pm = placemarks[0]
+                var requestAddress = ""
+                if let subThoroughfare = pm.subThoroughfare { requestAddress.append("\(subThoroughfare) ") }
+                if let thoroughfare = pm.thoroughfare { requestAddress.append("\(thoroughfare), ") }
+                if let locality = pm.locality { requestAddress.append(locality) }
+                
+                if requestAddress == "" {
+                    return
+                } else {
+                    userRequestsRef.child("requestAddress").setValue(requestAddress)
+                }
+            }
+        })
+        
+        
+        
     }
 }

@@ -22,6 +22,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     private var selectedAnno: UserAnnotation!
     private var selectedUserDetails = [String: Any]()
     private var selectedUserpermissions = [String: Any]()
+    private var selectedUserLocation: CLLocationCoordinate2D!
     
     let mapView: MKMapView = {
        let mp = MKMapView()
@@ -70,6 +71,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         return launcher
     }()
     
+    // MARK: - Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,9 +83,9 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         geofire = GeoFire(firebaseRef: geoFireRef)
         
         view.backgroundColor = UIColor.white
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        let image = UIImage(named: "list-icon")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        let newMessageBtnImage = UIImage(named: "list-icon")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: newMessageBtnImage, style: .plain, target: self, action: #selector(handleNewMessage))
         pinMeHereBtn.addTarget(self, action: #selector(spotUserAtLocation), for: .touchUpInside)
         settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
         setupViewsAndButtons()
@@ -126,6 +129,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             ProfileDetails.sharedInstance.fetchUserPermissions(fromId: loggedInId, toId: uid) { (permissionDetails) in
                 self.selectedUserpermissions = permissionDetails
             }
+            
+            selectedUserLocation = selectedAnnotation.coordinate
         }
     }
     
@@ -240,8 +245,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let selectedProfileID = selectedAnno.userNumber
         profileDetailsController.contactId = selectedProfileID
         profileDetailsController.contactDetailDictionary = selectedUserDetails
-        
         profileDetailsController.permissionsDictionary = selectedUserpermissions
+        profileDetailsController.contactLocation = selectedUserLocation
 
         
         navigationController?.pushViewController(profileDetailsController, animated: true)

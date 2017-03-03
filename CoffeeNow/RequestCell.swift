@@ -17,21 +17,21 @@ class RequestCell: UITableViewCell {
         return button
     }()
     
-    var declineButton: UIButton = {
+    var ignoreButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Decline", for: .normal)
+        button.setTitle("Ignore", for: .normal)
         return button
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier);
 
-        addSubview(declineButton)
-        declineButton.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -80).isActive = true
-        declineButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        declineButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        declineButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        addSubview(ignoreButton)
+        ignoreButton.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -80).isActive = true
+        ignoreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        ignoreButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        ignoreButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         addSubview(acceptButton)
         acceptButton.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -150).isActive = true

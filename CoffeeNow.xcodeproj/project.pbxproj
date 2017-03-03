@@ -314,7 +314,7 @@
 				TargetAttributes = {
 					84639FC41DBF407B00438B4C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = SSASSJL7V9;
+						DevelopmentTeam = 59ZDL3D4PJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -573,7 +573,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoffeeNow/CoffeeNow.entitlements;
-				DEVELOPMENT_TEAM = SSASSJL7V9;
+				DEVELOPMENT_TEAM = 59ZDL3D4PJ;
 				INFOPLIST_FILE = CoffeeNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
@@ -589,7 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoffeeNow/CoffeeNow.entitlements;
-				DEVELOPMENT_TEAM = SSASSJL7V9;
+				DEVELOPMENT_TEAM = 59ZDL3D4PJ;
 				INFOPLIST_FILE = CoffeeNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;

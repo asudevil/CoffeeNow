@@ -13,4 +13,5 @@ class Request: NSObject {
     var email: String?
     var profileImageUrl: String?
     var timeStampDate: Date?
+    var location: CLLocationCoordinate2D?
 }
