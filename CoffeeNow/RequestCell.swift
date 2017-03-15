@@ -12,6 +12,7 @@ class RequestCell: UITableViewCell {
     
     var acceptButton: UIButton = {
         let button = UIButton(type: .system)
+        let fromId: String?
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Accept", for: .normal)
         return button
@@ -19,6 +20,7 @@ class RequestCell: UITableViewCell {
     
     var ignoreButton: UIButton = {
         let button = UIButton(type: .system)
+        let fromId: String?
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Ignore", for: .normal)
         return button

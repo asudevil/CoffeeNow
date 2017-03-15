@@ -8,10 +8,10 @@
 
 class Request: NSObject {
     
-    var id: String?
+    var fromId: String?
     var name: String?
     var email: String?
     var profileImageUrl: String?
     var timeStampDate: Date?
-    var location: CLLocationCoordinate2D?
+    var meetingLocation: String?
 }

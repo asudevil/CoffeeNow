@@ -13,100 +13,109 @@ import MapKit
 class ContactRequestsVC: UITableViewController {
         
     let cellId = "cellId"
-    var loggedInId: String!
-    var contactRequests = [Request]()
-    //var contactRequests = [MKPlacemark: [Request]]()
-    var contactRequests2 = [ String: [String] ]()
-    var contactRequests2keys = [String]()
-    var contactRequests3 = [ String: [Request] ]()
-    var contactRequests3keys = [String]()
+    var toId: String?
+    var contactRequests = [ String: [Request] ]()
+    var meetingLocations = [String]()
     var contactRequestsRef: FIRDatabaseReference!
-    var contactAddress: String!
     let usersRef = FIRDatabase.database().reference().child("users")
     let dateFormatter = DateFormatter()
     
-    let business = "Sports Page"
-    let geoSectionsCount = 1
+    var fromIdButtonTags = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Contact Requests"
         
-        contactRequests2 = ["1 Infinite Loop, Cupertino" : ["Felix","Roman"], "2 Zero Loop, Sunnyvale" : ["Niki"]]
-        contactRequests2keys = Array(contactRequests2.keys)
-        
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         dateFormatter.locale = Locale.current
         
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        loggedInId = uid
+        guard let loggedInId = FIRAuth.auth()?.currentUser?.uid else {
+            print("logged in ID could not be retrieved")
+            return
+        }
+        
+        toId = loggedInId
         contactRequestsRef = FIRDatabase.database().reference().child("contact-requests").child(loggedInId)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleBack))
         tableView.register(RequestCell.self, forCellReuseIdentifier: cellId)
         
-        fetchContactRequests()
+        monitorContactRequests()
     }
+    
+    func createRequestWithSnapshot(snapshot: FIRDataSnapshot) -> Request? {
+        let request = Request()
         
-    func fetchContactRequests() {
-        // check for contact requests
-        contactRequestsRef.observe(.childAdded, with: { snapshot in
-
-            let request = Request()
-            var coordinateString = ""
+        guard let requestDict = snapshot.value as? [String: AnyObject],
+            let timeStamp = requestDict["timestamp"] as? Double,
+            let meetingLocation = requestDict["meetingLocation"] as? String else {
+                return nil
+        }
+        
+        request.timeStampDate = Date(timeIntervalSince1970: timeStamp)
+        request.fromId = snapshot.key
+        request.meetingLocation = meetingLocation
+        
+        return request
+    }
+    
+    func monitorContactRequests() {
+        // check for contact request removals
+        contactRequestsRef.observe(.childRemoved, with: { snapshot in
             
-            guard let requestDict = snapshot.value as? [String: Double],
-                let timeStamp = requestDict["timestamp"],
-                let contactLatitude = requestDict["latitude"],
-                let contactLongitude = requestDict["longitude"] else {
-                    print("Contact request firebase reference is incomplete.")
-                    return
+            guard let request = self.createRequestWithSnapshot(snapshot: snapshot), let meetingLocation = request.meetingLocation else {
+                print("Contact request firebase reference is incomplete when checking for removed child.")
+                return
             }
             
-            request.timeStampDate = Date(timeIntervalSince1970: timeStamp)
-            request.id = snapshot.key
-            //request.location = CLLocationCoordinate2D(latitude: contactLatitude, longitude: contactLongitude)
-            coordinateString = "\(contactLatitude),\(contactLongitude)"
-            
-            if var requestArray = self.contactRequests3[coordinateString] {
-                requestArray.append(request)
-                print(self.contactRequests3[coordinateString] ?? "coordinate not found in firebase reference")
-            } else {
-                print(self.contactRequests3)
-                self.contactRequests3[coordinateString] = [request]
-            }
-            print(self.contactRequests3)
-            
-            // get user info for contact requests
-            self.usersRef.child(snapshot.key).observe(.value, with: { (snapshot) in
-                
-                if let userDict = snapshot.value as? [String: AnyObject] {
-                    self.contactRequests3[coordinateString]?.last?.setValuesForKeys(userDict)
-                    //self.contactRequests.append(request)
-                    if self.contactRequests3.count > 0 {
-                        // if let address = self.contactRequests3[self.contactAddress] {
-                           // self.contactRequests3[self.contactAddress]?.append(request)
-                       // } else {
-                            // self.contactRequests3[self.contactAddress] = [request]
-                        
-                    } else {
-                        self.contactRequests3[self.contactAddress] = [request]
+            if var requestArrayAtLocation = self.contactRequests[meetingLocation] {
+                for (index,existingRequest) in requestArrayAtLocation.enumerated() {
+                    if existingRequest.fromId == request.fromId {
+                        requestArrayAtLocation.remove(at: index)
+                        continue
                     }
-
-                    
-                    //this will crash because of background thread, so lets use dispatch_async to fix
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    print(self.contactRequests3)
                 }
                 
-            }, withCancel: nil)
-            
+                if requestArrayAtLocation.isEmpty {
+                    self.contactRequests[meetingLocation] = nil
+                    self.meetingLocations = Array(self.contactRequests.keys)
+                } else {
+                    self.contactRequests[meetingLocation] = requestArrayAtLocation
+                }
             }
-        , withCancel: nil)
+            
+            self.tableView.reloadData()
+            
+        })
+        
+        
+        // check for contact request additions
+        contactRequestsRef.observe(.childAdded, with: { snapshot in
+
+            guard let request = self.createRequestWithSnapshot(snapshot: snapshot), let meetingLocation = request.meetingLocation else {
+                print("Contact request firebase reference is incomplete when checking for added child.")
+                return
+            }
+            
+            if var requestArrayAtLocation = self.contactRequests[meetingLocation] {
+                requestArrayAtLocation.append(request)
+                self.contactRequests[meetingLocation] = requestArrayAtLocation
+            } else {
+                self.contactRequests[meetingLocation] = [request]
+            }
+            self.meetingLocations = Array(self.contactRequests.keys)
+            
+            // get and set name and profileImageUrl for user requesting contact info
+            self.usersRef.child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let userDict = snapshot.value as? [String: AnyObject] {
+                    self.contactRequests[meetingLocation]?.last?.setValuesForKeys(userDict)
+                    self.tableView.reloadData()
+                }
+            })
+        })
     }
     
     func handleBack() {
@@ -114,37 +123,46 @@ class ContactRequestsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactRequests2[contactRequests2keys[section]]!.count
+        if let contactRequestsSection = contactRequests[meetingLocations[section]] {
+            return contactRequestsSection.count
+        } else {
+            return 0
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return contactRequests2keys.count
+         return meetingLocations.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return contactRequests2keys[section]
+         return meetingLocations[section]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RequestCell
         
-        cell.textLabel?.text = contactRequests2[contactRequests2keys[indexPath.section]]?[indexPath.row]
+        guard let requestsAtMeetingLocation = contactRequests[meetingLocations[indexPath.section]],
+            let requestTimeStamp = requestsAtMeetingLocation[indexPath.row].timeStampDate,
+            let requestProfileImageUrl = requestsAtMeetingLocation[indexPath.row].profileImageUrl else {
+            print("no sections found, timestamp error, or profile image error")
+            return cell
+        }
         
-        /*
+        let incomingRequest = requestsAtMeetingLocation[indexPath.row]
+        guard let incomingRequestFromId = incomingRequest.fromId else {
+            print ("request missing fromID")
+            return cell
+        }
         
-        let request = contactRequests[indexPath.row]
-        cell.textLabel?.text = request.name
-        cell.detailTextLabel?.text = dateFormatter.string(from: request.timeStampDate!)
-        
-         if let profileImageUrl = request.profileImageUrl {
-         cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-         }
- */
+        cell.textLabel?.text = incomingRequest.name
+        cell.detailTextLabel?.text = dateFormatter.string(from: requestTimeStamp)
+        cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: requestProfileImageUrl)
 
         cell.ignoreButton.addTarget(self, action: #selector(ignoreRequest), for: .touchUpInside)
-        cell.ignoreButton.tag = indexPath.row
+        cell.ignoreButton.tag = fromIdButtonTags.count
         cell.acceptButton.addTarget(self, action: #selector(acceptRequest), for: .touchUpInside)
-        cell.acceptButton.tag = indexPath.row
+        cell.acceptButton.tag = fromIdButtonTags.count
+        fromIdButtonTags.append(incomingRequestFromId)
         
         return cell
     }
@@ -154,8 +172,8 @@ class ContactRequestsVC: UITableViewController {
     }
     
     func acceptRequest(sender: UIButton) {
-        let row = sender.tag
-        print("accepted from \(row)")
+        let userIdMakingRequest = fromIdButtonTags[sender.tag]
+        print("accepted from \(userIdMakingRequest)")
         
         /*
         guard let toId = contactId else {return }
@@ -184,7 +202,18 @@ class ContactRequestsVC: UITableViewController {
     }
     
     func ignoreRequest(sender: UIButton) {
-        let row = sender.tag
-        print("ignored from \(row)")
+        let fromId = fromIdButtonTags[sender.tag]
+        print("ignored from \(fromId)")
+        
+        if let toId = self.toId {
+            let userRequestRef = FIRDatabase.database().reference().child("contact-requests/\(toId)/\(fromId)")
+            userRequestRef.removeValue( completionBlock: { (error, ref) in
+                if error != nil {
+                    print("Ignoring request failed due to error: \(error)")
+                } else {
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
 }

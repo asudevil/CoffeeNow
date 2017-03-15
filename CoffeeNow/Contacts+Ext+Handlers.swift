@@ -116,7 +116,7 @@ extension UserProfileCollectionVC {
         
         let userRequestsRef = FIRDatabase.database().reference().child("contact-requests/\(toId)/\(fromId)")
         userRequestsRef.child("timestamp").setValue(timestamp)
-        userRequestsRef.child("requestAddress").setValue("Unknown Location")
+        userRequestsRef.child("meetingLocation").setValue("Unknown Location")
         
         let location = CLLocation(latitude: contactLocation.latitude, longitude: contactLocation.longitude)
         
@@ -133,15 +133,15 @@ extension UserProfileCollectionVC {
             
             if placemarks.count > 0 {
                 let pm = placemarks[0]
-                var requestAddress = ""
-                if let subThoroughfare = pm.subThoroughfare { requestAddress.append("\(subThoroughfare) ") }
-                if let thoroughfare = pm.thoroughfare { requestAddress.append("\(thoroughfare), ") }
-                if let locality = pm.locality { requestAddress.append(locality) }
+                var meetingLocation = ""
+                if let subThoroughfare = pm.subThoroughfare { meetingLocation.append("\(subThoroughfare) ") }
+                if let thoroughfare = pm.thoroughfare { meetingLocation.append("\(thoroughfare), ") }
+                if let locality = pm.locality { meetingLocation.append(locality) }
                 
-                if requestAddress == "" {
+                if meetingLocation == "" {
                     return
                 } else {
-                    userRequestsRef.child("requestAddress").setValue(requestAddress)
+                    userRequestsRef.child("meetingLocation").setValue(meetingLocation)
                 }
             }
         })
