@@ -63,7 +63,7 @@ class OptionsSelector: NSObject, UICollectionViewDataSource, UICollectionViewDel
         if let window = UIApplication.shared.keyWindow {
             
             let height: CGFloat = CGFloat(settingOptions.count) * cellHeight
-            let y = window.frame.height - height
+            let y = window.frame.height - (height + 60)
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
             collectionView.backgroundColor = UIColor.gray
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)

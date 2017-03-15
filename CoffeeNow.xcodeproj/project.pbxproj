@@ -580,7 +580,7 @@
 				DEVELOPMENT_TEAM = 59ZDL3D4PJ;
 				INFOPLIST_FILE = CoffeeNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.rlabs.CoffeeNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CoffeeNow/CoffeeNow-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -596,7 +596,7 @@
 				DEVELOPMENT_TEAM = 59ZDL3D4PJ;
 				INFOPLIST_FILE = CoffeeNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codewithfelix.CoffeeNow;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.rlabs.CoffeeNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CoffeeNow/CoffeeNow-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
