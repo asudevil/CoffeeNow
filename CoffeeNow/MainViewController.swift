@@ -34,8 +34,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     let pinMeHereBtn: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .green
-        button.setImage(UIImage(named: "coffeeLogo"), for: .normal)
+        button.setImage(UIImage(named: "setLocation50"), for: .normal)
         return button
     }()
     
@@ -48,9 +47,9 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }()
     
     let settingBtn: UIButton = {
-       let btn = UIButton()
+        let btn = UIButton(type: .system)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(UIImage(named: "settings"), for: .normal)
+        btn.setImage(UIImage(named: "menu"), for: .normal)
         return btn
     }()
     
@@ -82,9 +81,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         geoFireRef = FIRDatabase.database().reference().child("location")
         geofire = GeoFire(firebaseRef: geoFireRef)
         
-        view.backgroundColor = UIColor.white
         //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        let newMessageBtnImage = UIImage(named: "list-icon")
+        let newMessageBtnImage = UIImage(named: "speechBubble")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: newMessageBtnImage, style: .plain, target: self, action: #selector(handleNewMessage))
         pinMeHereBtn.addTarget(self, action: #selector(spotUserAtLocation), for: .touchUpInside)
         settingBtn.addTarget(self, action: #selector(clickedSettings), for: .touchUpInside)
@@ -176,13 +174,13 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             annotationView.rightCalloutAccessoryView = mapBtn
             
             let chatBtn = UIButton()
-            chatBtn.frame = CGRect(x: 0, y: 0, width: 35, height: 40)
-            chatBtn.setImage(UIImage(named: "chatBtn"), for: .normal)
+            chatBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            chatBtn.setImage(UIImage(named: "chat50"), for: .normal)
             chatBtn.addTarget(self, action: #selector(showChatMessage), for: .touchUpInside)
             
             let profileDetailsAnno = UIButton()
-            profileDetailsAnno.frame = CGRect(x: 35, y: 0, width: 35, height: 40)
-            profileDetailsAnno.setImage(UIImage(named: "profileImage"), for: .normal)
+            profileDetailsAnno.frame = CGRect(x: 35, y: 0, width: 35, height: 35)
+            profileDetailsAnno.setImage(UIImage(named: "contactCard50"), for: .normal)
             profileDetailsAnno.addTarget(self, action: #selector(profileDetailsTap), for: .touchUpInside)
             
             annoContainer.frame = CGRect(x: 0, y: 0, width: 70, height: 40)

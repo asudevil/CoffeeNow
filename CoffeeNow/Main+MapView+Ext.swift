@@ -76,17 +76,19 @@ extension MainViewController {
         view.addSubview(pinMeHereBtn)
         view.addSubview(settingBtn)
         view.addSubview(locationSpotter)
+        view.backgroundColor = UIColor(r: 245, g: 245, b: 245, a: 100)
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
+        mapView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0).isActive = true
         mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60).isActive = true
+
         
-        settingBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 35).isActive = true
+        settingBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
         settingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
         settingBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
         settingBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        pinMeHereBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35).isActive = true
+        pinMeHereBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
         pinMeHereBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
         pinMeHereBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
         pinMeHereBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
