@@ -39,13 +39,9 @@ extension MainViewController {
         let editProfileController = EditProfileVC()
         navigationController?.pushViewController(editProfileController, animated: true)
     }
-    func contactsTapped() {
-        let contactsVC = ContactsController()
-        navigationController?.pushViewController(contactsVC, animated: true)
-    }
-    func contactRequestsTapped() {
-        let contactRequestsVC = ContactRequestsVC()
-        navigationController?.pushViewController(contactRequestsVC, animated: true)
+    func contactsTabTapped() {
+        let contactsTabVC = ContactsTabVC()
+        navigationController?.pushViewController(contactsTabVC, animated: true)
     }
     func changeSettingsTapped() {
         let changeSettingsVC = ChangeSettings()

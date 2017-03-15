@@ -12,6 +12,7 @@ class Request: NSObject {
     var name: String?
     var email: String?
     var profileImageUrl: String?
+    var timestamp: Double?
     var timeStampDate: Date?
     var meetingLocation: String?
 }

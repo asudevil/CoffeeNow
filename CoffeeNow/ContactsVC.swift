@@ -1,22 +1,21 @@
 //
-//  ContactRequestsVC.swift
+//  ContactsVC.swift
 //  CoffeeNow
 //
-//  Created by Roman Sheydvasser on 1/29/17.
+//  Created by Roman Sheydvasser on 1/21/17.
 //  Copyright © 2017 CodeWithFelix. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import MapKit
 
-class ContactRequestsVC: UITableViewController {
-        
+class ContactsVC: UITableViewController {
+    
     let cellId = "cellId"
     var toId: String?
     var contactRequests = [ String: [Request] ]()
     var meetingLocations = [String]()
-    var contactRequestsRef: FIRDatabaseReference!
+    var contactsRef: FIRDatabaseReference!
     let usersRef = FIRDatabase.database().reference().child("users")
     let dateFormatter = DateFormatter()
     
@@ -32,7 +31,7 @@ class ContactRequestsVC: UITableViewController {
         contactRequests.removeAll()
         meetingLocations = []
         requestButtonTags = []
-        contactRequestsRef.removeAllObservers()
+        contactsRef.removeAllObservers()
     }
     
     override func viewDidLoad() {
@@ -48,7 +47,7 @@ class ContactRequestsVC: UITableViewController {
         }
         
         toId = loggedInId
-        contactRequestsRef = FIRDatabase.database().reference().child("contact-requests").child(loggedInId)
+        contactsRef = FIRDatabase.database().reference().child("contacts").child(loggedInId)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleBack))
         tableView.register(RequestCell.self, forCellReuseIdentifier: cellId)
@@ -73,7 +72,7 @@ class ContactRequestsVC: UITableViewController {
     
     func monitorContactRequests() {
         // check for contact request removals
-        contactRequestsRef.observe(.childRemoved, with: { snapshot in
+        contactsRef.observe(.childRemoved, with: { snapshot in
             
             guard let request = self.createRequestWithSnapshot(snapshot: snapshot), let meetingLocation = request.meetingLocation else {
                 print("Contact request firebase reference is incomplete when checking for removed child.")
@@ -102,15 +101,15 @@ class ContactRequestsVC: UITableViewController {
         
         
         // check for contact request additions
-        contactRequestsRef.observe(.childAdded, with: { snapshot in
-
+        contactsRef.observe(.childAdded, with: { snapshot in
+            
             guard let request = self.createRequestWithSnapshot(snapshot: snapshot) else {
-                print("requestVC: Contact request firebase reference is incomplete when checking for added child.")
+                print("contactsVC: Contact request firebase reference is incomplete when checking for added child.")
                 return
             }
             
             guard let meetingLocation = request.meetingLocation else {
-                print("requestVC: Request missing meeting location.")
+                print("contactsVC: Request missing meeting location.")
                 return
             }
             
@@ -146,11 +145,11 @@ class ContactRequestsVC: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-         return meetingLocations.count
+        return meetingLocations.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-         return meetingLocations[section]
+        return meetingLocations[section]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -159,8 +158,8 @@ class ContactRequestsVC: UITableViewController {
         guard let requestsAtMeetingLocation = contactRequests[meetingLocations[indexPath.section]],
             let requestTimeStamp = requestsAtMeetingLocation[indexPath.row].timeStampDate,
             let requestProfileImageUrl = requestsAtMeetingLocation[indexPath.row].profileImageUrl else {
-            print("no sections found, timestamp error, or profile image error")
-            return cell
+                print("no sections found, timestamp error, or profile image error")
+                return cell
         }
         
         let incomingRequest = requestsAtMeetingLocation[indexPath.row]
@@ -168,11 +167,11 @@ class ContactRequestsVC: UITableViewController {
         cell.textLabel?.text = incomingRequest.name
         cell.detailTextLabel?.text = dateFormatter.string(from: requestTimeStamp)
         cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: requestProfileImageUrl)
-
-        cell.ignoreButton.addTarget(self, action: #selector(ignoreRequest), for: .touchUpInside)
+        
+        cell.acceptButton.isHidden = true
+        cell.ignoreButton.addTarget(self, action: #selector(removeContact), for: .touchUpInside)
         cell.ignoreButton.tag = requestButtonTags.count
-        cell.acceptButton.addTarget(self, action: #selector(acceptRequest), for: .touchUpInside)
-        cell.acceptButton.tag = requestButtonTags.count
+        cell.ignoreButton.setTitle("Delete", for: .normal)
         requestButtonTags.append(incomingRequest)
         
         return cell
@@ -182,28 +181,12 @@ class ContactRequestsVC: UITableViewController {
         return 62
     }
     
-    func acceptRequest(sender: UIButton) {
-        let contactRequest = requestButtonTags[sender.tag]
-        print("accepted from \(contactRequest?.name)")
-        
-        if let toId = self.toId, let request = contactRequest, let fromId = request.fromId {
-            let userRequestsRef = FIRDatabase.database().reference().child("contacts/\(toId)/\(fromId)")
-            userRequestsRef.child("timestamp").setValue(request.timestamp)
-            userRequestsRef.child("meetingLocation").setValue(request.meetingLocation)
-        }
-        
-        ignoreRequest(sender: sender)
-        
-        self.tableView.reloadData()
-        
-    }
-    
-    func ignoreRequest(sender: UIButton) {
+    func removeContact(sender: UIButton) {
         let contactRequest = requestButtonTags[sender.tag]
         print("ignored from \(contactRequest?.name)")
         
         if let toId = self.toId, let request = contactRequest, let fromId = request.fromId {
-            let userRequestRef = FIRDatabase.database().reference().child("contact-requests/\(toId)/\(fromId)")
+            let userRequestRef = FIRDatabase.database().reference().child("contacts/\(toId)/\(fromId)")
             userRequestRef.removeValue( completionBlock: { (error, ref) in
                 if error != nil {
                     print("Ignoring request failed due to error: \(error)")
