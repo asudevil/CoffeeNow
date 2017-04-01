@@ -99,7 +99,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
 
     func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 3000, 3000)
         
         mapView.setRegion(coordinateRegion, animated: true)
     }
@@ -248,6 +248,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
         
         navigationController?.pushViewController(profileDetailsController, animated: true)
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        showSightingsOnMap(location: CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude))
     }
     
     func showSightingsOnMap(location: CLLocation) {
