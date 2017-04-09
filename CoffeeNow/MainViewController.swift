@@ -156,8 +156,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             imageView.layer.masksToBounds = true
             imageView.contentMode = .scaleAspectFill
             
-            if let url = anno.imageUrl {
-                imageView.loadImageUsingCacheWithUrlString(urlString: url)
+            if let profileImageView = anno.imageView {
+                imageView.image = profileImageView.image
             } else {
                 imageView.image = UIImage(named: "profileImage")
             }
@@ -255,7 +255,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func showSightingsOnMap(location: CLLocation) {
-        let circleQuery = geofire.query(at: location, withRadius: 4.5)
+        let circleQuery = geofire.query(at: location, withRadius: 5)
         var userName = "No Name"
         
         _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, locationIn) in
@@ -269,8 +269,20 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                         }
                         if let name = dictionary["name"] as? String {
                             userName = name
-                            let anno = UserAnnotation(coordinate: location.coordinate, userId: key, userName: userName, profileImageUrl: profileImageUrl)
-                            self.mapView.addAnnotation(anno)
+                            let profileImage = UIImageView()
+                            profileImage.loadImageUsingCacheWithUrlString(urlString: profileImageUrl) {
+                                (error) in
+                                if let error = error {
+                                    print(error)
+                                    profileImage.image = UIImage(named: "profileImage")
+                                }
+                                
+                                let anno = UserAnnotation(coordinate: location.coordinate, userId: key, userName: userName, profileImageUrl: profileImageUrl, profileImage: profileImage)
+                                
+                                DispatchQueue.main.async {
+                                    self.mapView.addAnnotation(anno)
+                                }
+                            }
                         }
                     }
                 }, withCancel: nil)
