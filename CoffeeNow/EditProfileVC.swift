@@ -288,7 +288,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         
         if let user = profileDetailsDic?[fieldToUpdate] as? String {
             if user != newInfo {
-                profileDetailsDic?.updateValue(newInfo, forKey: fieldToUpdate)
+                profileDetailsDic?.updateValue(newInfo!, forKey: fieldToUpdate)
                 ProfileDetails.sharedInstance.setProfileDetails(profileDictionary: profileDetailsDic!)
             }
         }

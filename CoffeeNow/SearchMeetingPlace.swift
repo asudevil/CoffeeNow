@@ -81,8 +81,13 @@ class SearchMeetingPlace: UIViewController {
         let search = MKLocalSearch(request: request)
         
         search.start { (response, error) in
-            guard let response = response else {
+            if let error = error {
                 print("Search error: \(error)")
+                return
+            }
+            
+            guard let response = response else {
+                print("Search error: no response")
                 return
             }
             // add coffee shops to map

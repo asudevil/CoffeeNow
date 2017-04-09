@@ -12,7 +12,6 @@
 		3005BF281E33D8C30048662A /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3005BF271E33D8C30048662A /* ContactsVC.swift */; };
 		309FA4FC1E44256900DA749C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309FA4FB1E44256900DA749C /* Request.swift */; };
 		30C29F701E79378600223EB8 /* ContactsTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C29F6F1E79378600223EB8 /* ContactsTabVC.swift */; };
-		78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */; };
 		8400718F1E1B7EAB00F9E395 /* SearchMeetingPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */; };
 		840F5D221DC9409E0028AAA1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5D211DC9409E0028AAA1 /* UserCell.swift */; };
 		841469E61DCB0AD40032DA6F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841469E51DCB0AD40032DA6F /* UserAnnotation.swift */; };
@@ -51,6 +50,7 @@
 		84F929951DC5AD74000E8914 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929941DC5AD74000E8914 /* LoginController+handlers.swift */; };
 		84F929981DC5D538000E8914 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929971DC5D538000E8914 /* Extensions.swift */; };
 		84F9299A1DC6B944000E8914 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F929991DC6B944000E8914 /* ChatLogController.swift */; };
+		9C95D74F9783B48A7A787A17 /* Pods_CoffeeNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11E4A937655CEB26071AB17 /* Pods_CoffeeNow.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,7 @@
 		3005BF271E33D8C30048662A /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		309FA4FB1E44256900DA749C /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		30C29F6F1E79378600223EB8 /* ContactsTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTabVC.swift; sourceTree = "<group>"; };
-		68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D8BA9AB81381303346ED2E4 /* Pods-CoffeeNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow.release.xcconfig"; sourceTree = "<group>"; };
 		8400718E1E1B7EAB00F9E395 /* SearchMeetingPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMeetingPlace.swift; sourceTree = "<group>"; };
 		840F5D1F1DC8780C0028AAA1 /* CoffeeNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeNow.entitlements; sourceTree = "<group>"; };
 		840F5D211DC9409E0028AAA1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 		84F929941DC5AD74000E8914 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		84F929971DC5D538000E8914 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		84F929991DC6B944000E8914 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
-		9F02700E7DD637B0D8ABA2C8 /* Pods-CoffeeNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow.debug.xcconfig"; sourceTree = "<group>"; };
-		F8538EBEF0698CD414004D01 /* Pods-CoffeeNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow.release.xcconfig"; sourceTree = "<group>"; };
+		90675FB302016746298A3E83 /* Pods-CoffeeNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow.debug.xcconfig"; sourceTree = "<group>"; };
+		A11E4A937655CEB26071AB17 /* Pods_CoffeeNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,20 +121,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78A3BC568345C103570C4C0F /* Pods_CoffeeNow.framework in Frameworks */,
+				9C95D74F9783B48A7A787A17 /* Pods_CoffeeNow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4DC46FEE146E1611FF7A665B /* Pods */ = {
+		18938E0C0760AC61A6EA4BC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9F02700E7DD637B0D8ABA2C8 /* Pods-CoffeeNow.debug.xcconfig */,
-				F8538EBEF0698CD414004D01 /* Pods-CoffeeNow.release.xcconfig */,
+				A11E4A937655CEB26071AB17 /* Pods_CoffeeNow.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		840F5D201DC940610028AAA1 /* Cell */ = {
@@ -179,8 +178,8 @@
 			children = (
 				84639FC71DBF407B00438B4C /* CoffeeNow */,
 				84639FC61DBF407B00438B4C /* Products */,
-				4DC46FEE146E1611FF7A665B /* Pods */,
-				CCB87683DCC99022B91C2D4E /* Frameworks */,
+				B5DA71513F93070B4120961D /* Pods */,
+				18938E0C0760AC61A6EA4BC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,12 +273,13 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		CCB87683DCC99022B91C2D4E /* Frameworks */ = {
+		B5DA71513F93070B4120961D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				68FC187C7E05537549BDCF34 /* Pods_CoffeeNow.framework */,
+				90675FB302016746298A3E83 /* Pods-CoffeeNow.debug.xcconfig */,
+				5D8BA9AB81381303346ED2E4 /* Pods-CoffeeNow.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,12 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84639FD71DBF407B00438B4C /* Build configuration list for PBXNativeTarget "CoffeeNow" */;
 			buildPhases = (
-				5FF19ED9AC28253B78EB10FF /* Check Pods Manifest.lock */,
+				213B22DB624BF3265453B086 /* [CP] Check Pods Manifest.lock */,
 				84639FC11DBF407B00438B4C /* Sources */,
 				84639FC21DBF407B00438B4C /* Frameworks */,
 				84639FC31DBF407B00438B4C /* Resources */,
-				67AA285571D54333BF427C19 /* Embed Pods Frameworks */,
-				C67402451C2D6D7C006CA325 /* Copy Pods Resources */,
+				A46F910B99A7D1536574C5AE /* [CP] Embed Pods Frameworks */,
+				7D539D247AFAD6D4F0B0776D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,49 +360,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5FF19ED9AC28253B78EB10FF /* Check Pods Manifest.lock */ = {
+		213B22DB624BF3265453B086 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		67AA285571D54333BF427C19 /* Embed Pods Frameworks */ = {
+		7D539D247AFAD6D4F0B0776D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C67402451C2D6D7C006CA325 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A46F910B99A7D1536574C5AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeNow/Pods-CoffeeNow-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -573,7 +573,7 @@
 		};
 		84639FD81DBF407B00438B4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F02700E7DD637B0D8ABA2C8 /* Pods-CoffeeNow.debug.xcconfig */;
+			baseConfigurationReference = 90675FB302016746298A3E83 /* Pods-CoffeeNow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoffeeNow/CoffeeNow.entitlements;
@@ -589,7 +589,7 @@
 		};
 		84639FD91DBF407B00438B4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8538EBEF0698CD414004D01 /* Pods-CoffeeNow.release.xcconfig */;
+			baseConfigurationReference = 5D8BA9AB81381303346ED2E4 /* Pods-CoffeeNow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoffeeNow/CoffeeNow.entitlements;

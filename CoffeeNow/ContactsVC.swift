@@ -183,12 +183,11 @@ class ContactsVC: UITableViewController {
     
     func removeContact(sender: UIButton) {
         let contactRequest = requestButtonTags[sender.tag]
-        print("ignored from \(contactRequest?.name)")
         
         if let toId = self.toId, let request = contactRequest, let fromId = request.fromId {
             let userRequestRef = FIRDatabase.database().reference().child("contacts/\(toId)/\(fromId)")
             userRequestRef.removeValue( completionBlock: { (error, ref) in
-                if error != nil {
+                if let error = error {
                     print("Ignoring request failed due to error: \(error)")
                 } else {
                     self.tableView.reloadData()
